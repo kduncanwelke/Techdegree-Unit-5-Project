@@ -24,3 +24,14 @@ protocol EmployeeRegistration: EntrantRegistration {
     func isSubmissionErrorFree(entrant: Employee) -> Bool
     func generatePass(entrant: Employee) -> Pass?
 }
+
+protocol PassEntrant {
+}
+
+protocol GuestEntrant: PassEntrant {
+    var entrant: Guest { get set }
+}
+
+protocol EmployeeEntrant: PassEntrant {
+    var entrant: Employee { get set }
+}

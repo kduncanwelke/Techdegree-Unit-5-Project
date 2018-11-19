@@ -15,16 +15,15 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         
         // Uncomment or comment out individual swipe actions to see results
-      
-        /*
-        let person1 = Guest(type: .Classic, firstName: "", lastName: "Name", birthday: nil)
+        let person1 = Guest(type: .Classic, firstName: "jg", lastName: "gkg", birthday: "", streetAddress: "", city: "", state: "", zipCode: nil)
+        // let person1 = Guest(type: .Classic, firstName: "", lastName: "Name", birthday: nil, streetAddress: )
         let pass1 = person1.generatePass(entrant: person1)
         if let pass1 = pass1 {
             Kiosk.swipe(pass: pass1, forAccessTo: .Office)
             // Kiosk.swipe(pass: pass1, forAccessTo: .Rides)
             // Kiosk.swipe(pass: pass1, forAccessTo: .Amusements)
         }
-        */
+        
         
         /*
         let person2 = Guest(type: .Vip, firstName: "Fancy", lastName: "Person", birthday: nil)

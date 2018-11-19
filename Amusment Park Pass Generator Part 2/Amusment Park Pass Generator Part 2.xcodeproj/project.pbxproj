@@ -12,6 +12,9 @@
 		2D97540B2199E352000CEA88 /* Kiosk.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D97540A2199E352000CEA88 /* Kiosk.swift */; };
 		2D97540D2199E91F000CEA88 /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D97540C2199E91F000CEA88 /* Timer.swift */; };
 		2D9EE4102193973B00F9132B /* PassTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D9EE40F2193973B00F9132B /* PassTypes.swift */; };
+		2DA589C021A3381400EF040A /* ProjectNumbers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA589BF21A3381400EF040A /* ProjectNumbers.swift */; };
+		2DA589C221A338C800EF040A /* VendorCompanies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA589C121A338C800EF040A /* VendorCompanies.swift */; };
+		2DA589C421A368D300EF040A /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2DA589C321A368D300EF040A /* Default-568h@2x.png */; };
 		2DC892CF21A0D0E70097735C /* PassViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC892CE21A0D0E70097735C /* PassViewController.swift */; };
 		2DCAFBA8218CF6F500441BE9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DCAFBA7218CF6F500441BE9 /* AppDelegate.swift */; };
 		2DCAFBAA218CF6F500441BE9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DCAFBA9218CF6F500441BE9 /* ViewController.swift */; };
@@ -31,6 +34,9 @@
 		2D97540A2199E352000CEA88 /* Kiosk.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Kiosk.swift; sourceTree = "<group>"; };
 		2D97540C2199E91F000CEA88 /* Timer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timer.swift; sourceTree = "<group>"; };
 		2D9EE40F2193973B00F9132B /* PassTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassTypes.swift; sourceTree = "<group>"; };
+		2DA589BF21A3381400EF040A /* ProjectNumbers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectNumbers.swift; sourceTree = "<group>"; };
+		2DA589C121A338C800EF040A /* VendorCompanies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VendorCompanies.swift; sourceTree = "<group>"; };
+		2DA589C321A368D300EF040A /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		2DC892CE21A0D0E70097735C /* PassViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassViewController.swift; sourceTree = "<group>"; };
 		2DCAFBA4218CF6F500441BE9 /* Amusment Park Pass Generator Part 1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Amusment Park Pass Generator Part 1.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2DCAFBA7218CF6F500441BE9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -60,7 +66,8 @@
 		2DCAFB9B218CF6F500441BE9 = {
 			isa = PBXGroup;
 			children = (
-				2DCAFBA6218CF6F500441BE9 /* Amusment Park Pass Generator Part 1 */,
+				2DA589C321A368D300EF040A /* Default-568h@2x.png */,
+				2DCAFBA6218CF6F500441BE9 /* Amusment Park Pass Generator Part 2 */,
 				2DCAFBA5218CF6F500441BE9 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -73,7 +80,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		2DCAFBA6218CF6F500441BE9 /* Amusment Park Pass Generator Part 1 */ = {
+		2DCAFBA6218CF6F500441BE9 /* Amusment Park Pass Generator Part 2 */ = {
 			isa = PBXGroup;
 			children = (
 				2DCAFBA7218CF6F500441BE9 /* AppDelegate.swift */,
@@ -85,6 +92,8 @@
 				2DCAFBB9218CF71600441BE9 /* Entrant.swift */,
 				2DCAFBBD218D081A00441BE9 /* Guest.swift */,
 				2DCAFBBF218D083D00441BE9 /* Employee.swift */,
+				2DA589BF21A3381400EF040A /* ProjectNumbers.swift */,
+				2DA589C121A338C800EF040A /* VendorCompanies.swift */,
 				2DF4C1A82195061800BA4862 /* Extensions.swift */,
 				2DCAFBBB218CF71F00441BE9 /* Pass.swift */,
 				2D9EE40F2193973B00F9132B /* PassTypes.swift */,
@@ -94,7 +103,7 @@
 				2DCAFBB0218CF6F500441BE9 /* LaunchScreen.storyboard */,
 				2DCAFBB3218CF6F500441BE9 /* Info.plist */,
 			);
-			path = "Amusment Park Pass Generator Part 1";
+			path = "Amusment Park Pass Generator Part 2";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -133,7 +142,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 2DCAFB9F218CF6F500441BE9 /* Build configuration list for PBXProject "Amusment Park Pass Generator Part 1" */;
+			buildConfigurationList = 2DCAFB9F218CF6F500441BE9 /* Build configuration list for PBXProject "Amusment Park Pass Generator Part 2" */;
 			compatibilityVersion = "Xcode 8.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -157,6 +166,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2DCAFBB2218CF6F500441BE9 /* LaunchScreen.storyboard in Resources */,
+				2DA589C421A368D300EF040A /* Default-568h@2x.png in Resources */,
 				2DCAFBAF218CF6F500441BE9 /* Assets.xcassets in Resources */,
 				2DCAFBAD218CF6F500441BE9 /* Main.storyboard in Resources */,
 			);
@@ -177,10 +187,12 @@
 				2DCAFBBC218CF71F00441BE9 /* Pass.swift in Sources */,
 				2DCAFBBA218CF71600441BE9 /* Entrant.swift in Sources */,
 				2DC892CF21A0D0E70097735C /* PassViewController.swift in Sources */,
+				2DA589C021A3381400EF040A /* ProjectNumbers.swift in Sources */,
 				2D97540D2199E91F000CEA88 /* Timer.swift in Sources */,
 				2DCAFBAA218CF6F500441BE9 /* ViewController.swift in Sources */,
 				2DCAFBA8218CF6F500441BE9 /* AppDelegate.swift in Sources */,
 				2D97540B2199E352000CEA88 /* Kiosk.swift in Sources */,
+				2DA589C221A338C800EF040A /* VendorCompanies.swift in Sources */,
 				2D93CFF221924BED00C996AC /* Protocols.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -347,7 +359,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		2DCAFB9F218CF6F500441BE9 /* Build configuration list for PBXProject "Amusment Park Pass Generator Part 1" */ = {
+		2DCAFB9F218CF6F500441BE9 /* Build configuration list for PBXProject "Amusment Park Pass Generator Part 2" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2DCAFBB4218CF6F500441BE9 /* Debug */,
