@@ -19,7 +19,7 @@ struct Kiosk {
         // run timer to ensure pass is not swiped within 5 seconds
         TimerHandling.timer.fire()
         
-        checkForBirthday(personWithPass: pass)
+       // checkForBirthday(personWithPass: pass)
         switch forAccessTo {
         case .Rides:
             if pass.rideAccess == true {
@@ -108,8 +108,9 @@ struct Kiosk {
         case MerchDiscount
     }
     
+    
     // run during swipe to check if it is visitor's birthday
-    static func checkForBirthday(personWithPass: Pass) {
+    static func checkForBirthday<T>(personWithPass: T) where T:BirthdayCheckable {
         let date = Date()
         let calendar = Calendar.current
         let currentMonth = calendar.component(.month, from: date)

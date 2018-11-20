@@ -30,6 +30,9 @@
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <state key="normal" title="Guest"/>
+                                        <connections>
+                                            <action selector="guestButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zbd-vK-P1K"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jDs-ZC-W2l">
                                         <rect key="frame" x="192" y="0.0" width="192" height="60"/>
@@ -38,7 +41,10 @@
                                             <constraint firstAttribute="height" constant="60" id="Jau-gw-8cF"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                        <state key="normal" title="Employee"/>
+                                        <state key="normal" title="Special"/>
+                                        <connections>
+                                            <action selector="specialButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="XsT-ak-uJW"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q8A-RT-HOV">
                                         <rect key="frame" x="384" y="0.0" width="192" height="60"/>
@@ -47,7 +53,10 @@
                                             <constraint firstAttribute="height" constant="60" id="LcC-Hm-fnT"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                        <state key="normal" title="Manager"/>
+                                        <state key="normal" title="Employee"/>
+                                        <connections>
+                                            <action selector="employeeButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3rz-4B-DQd"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RNA-AU-kcZ">
                                         <rect key="frame" x="576" y="0.0" width="192" height="60"/>
@@ -56,7 +65,10 @@
                                             <constraint firstAttribute="height" constant="60" id="Vhr-0N-lbS"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                        <state key="normal" title="Vendor"/>
+                                        <state key="normal" title="Services"/>
+                                        <connections>
+                                            <action selector="servicesButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="wst-wX-laL"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -70,7 +82,7 @@
                                             <constraint firstAttribute="height" constant="45" id="hqZ-WZ-5b4"/>
                                         </constraints>
                                         <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <state key="normal" title="Button"/>
+                                        <state key="normal" title="Button 1"/>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BJw-bK-J4Z">
                                         <rect key="frame" x="192" y="0.0" width="192" height="45"/>
@@ -79,7 +91,7 @@
                                             <constraint firstAttribute="height" constant="45" id="HI4-ov-KkR"/>
                                         </constraints>
                                         <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <state key="normal" title="Button"/>
+                                        <state key="normal" title="Button 2"/>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kKP-sU-TEL">
                                         <rect key="frame" x="384" y="0.0" width="192" height="45"/>
@@ -88,7 +100,7 @@
                                             <constraint firstAttribute="height" constant="45" id="DLK-AB-PlI"/>
                                         </constraints>
                                         <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <state key="normal" title="Button"/>
+                                        <state key="normal" title="Button 3"/>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CWc-hz-EtN">
                                         <rect key="frame" x="576" y="0.0" width="192" height="45"/>
@@ -97,7 +109,7 @@
                                             <constraint firstAttribute="height" constant="45" id="z4i-7d-Qlj"/>
                                         </constraints>
                                         <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <state key="normal" title="Button"/>
+                                        <state key="normal" title="Button 4"/>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -339,6 +351,9 @@
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                         <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <state key="normal" title="Populate Data"/>
+                                        <connections>
+                                            <action selector="populateDateButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="EVK-mk-owO"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -370,6 +385,20 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="addressEntry" destination="d7F-NH-cPU" id="MxM-hG-xvz"/>
+                        <outlet property="button1" destination="Z77-5T-aFo" id="Scy-QC-bQT"/>
+                        <outlet property="button2" destination="BJw-bK-J4Z" id="y8v-CX-Ktv"/>
+                        <outlet property="button3" destination="kKP-sU-TEL" id="62V-xX-Gen"/>
+                        <outlet property="button4" destination="CWc-hz-EtN" id="Cyy-UJ-8TD"/>
+                        <outlet property="cityEntry" destination="hCV-wY-fpv" id="IWv-Yv-WaJ"/>
+                        <outlet property="companyEntry" destination="1g3-U2-F5G" id="dqf-S0-BYY"/>
+                        <outlet property="dobEntry" destination="Hvz-Vn-QP1" id="36k-JB-1CI"/>
+                        <outlet property="firstNameEntry" destination="kiI-PE-Ex6" id="B5c-jp-OIN"/>
+                        <outlet property="lastNameEntry" destination="Snk-pI-rOg" id="IF8-3b-PZ2"/>
+                        <outlet property="projectNumberEntry" destination="uf1-7E-wdC" id="awO-ON-S8c"/>
+                        <outlet property="ssnEntry" destination="91J-gE-uup" id="hRn-qc-hcw"/>
+                        <outlet property="stateEntry" destination="hXd-zB-iLg" id="Z6W-Nt-pi2"/>
+                        <outlet property="zipcodeEntry" destination="4bH-5Z-xNu" id="16O-tr-5s0"/>
                         <segue destination="C9D-jl-3yQ" kind="showDetail" identifier="viewPass" id="pnU-Fa-g38"/>
                     </connections>
                 </viewController>
@@ -513,7 +542,7 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rqd-vM-CiB">
-                                <rect key="frame" x="220" y="881" width="328" height="113"/>
+                                <rect key="frame" x="220.5" y="881" width="327" height="113"/>
                                 <color key="backgroundColor" red="0.46202266219999999" green="0.83828371759999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="Rqd-vM-CiB" secondAttribute="height" multiplier="136:47" id="mrn-bw-w4E"/>

@@ -17,8 +17,8 @@ class Entrant {
     var state: String?
     var zipCode: Int?
     
-    init(firstName: String, lastName: String, birthday: String? = nil, streetAddress: String? = nil, city: String? = nil, state: String? = nil, zipCode: Int? = nil ) {
-        if let birthday = birthday, let streetAddress = streetAddress, let city = city, let state = state, let zipCode = zipCode {
+    init(firstName: String, lastName: String, birthday: String? = nil, streetAddress: String? = nil, city: String? = nil, state: String? = nil, zipCode: Int? = nil) {
+        if let birthday = birthday, let streetAddress = streetAddress, let city = city, let state = state, let zipCode = zipCode, let pass = pass {
             self.birthday = birthday
             self.streetAddress = streetAddress
             self.city = city

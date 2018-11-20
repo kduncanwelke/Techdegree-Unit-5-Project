@@ -25,13 +25,18 @@ protocol EmployeeRegistration: EntrantRegistration {
     func generatePass(entrant: Employee) -> Pass?
 }
 
+protocol BirthdayCheckable {
+}
+
 protocol PassEntrant {
 }
 
-protocol GuestEntrant: PassEntrant {
+protocol GuestEntrant: PassEntrant, BirthdayCheckable {
     var entrant: Guest { get set }
 }
 
-protocol EmployeeEntrant: PassEntrant {
+protocol EmployeeEntrant: PassEntrant, BirthdayCheckable {
     var entrant: Employee { get set }
 }
+
+
