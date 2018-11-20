@@ -8,10 +8,19 @@
 
 import Foundation
 
-protocol EntrantRegistration {
+protocol Entrant {
+    var firstName: String { get set }
+    var lastName: String  { get set }
+    var birthday: String?  { get set }
+    var streetAddress: String?  { get set }
+    var city: String?  { get set }
+    var state: String?  { get set }
+    var zipCode: Int?  { get set }
 }
 
-// different implementations for each subclass of entrant
+// different implementations for each class
+protocol EntrantRegistration {
+}
 
 protocol GuestRegistration: EntrantRegistration {
     func checkRequirements(entrant: Guest) throws
@@ -25,17 +34,14 @@ protocol EmployeeRegistration: EntrantRegistration {
     func generatePass(entrant: Employee) -> Pass?
 }
 
-protocol BirthdayCheckable {
-}
-
 protocol PassEntrant {
 }
 
-protocol GuestEntrant: PassEntrant, BirthdayCheckable {
+protocol GuestEntrant: PassEntrant {
     var entrant: Guest { get set }
 }
 
-protocol EmployeeEntrant: PassEntrant, BirthdayCheckable {
+protocol EmployeeEntrant: PassEntrant {
     var entrant: Employee { get set }
 }
 

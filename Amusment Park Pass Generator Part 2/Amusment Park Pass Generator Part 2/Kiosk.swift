@@ -9,6 +9,7 @@
 import Foundation
 
 struct Kiosk {
+    
     // swipe function, checks for birthday and access to given access point
     static func swipe(pass: Pass, forAccessTo: AccessPoint) -> Bool {
         guard TimerHandling.seconds == 0 else {
@@ -110,13 +111,13 @@ struct Kiosk {
     
     
     // run during swipe to check if it is visitor's birthday
-    static func checkForBirthday<T>(personWithPass: T) where T:BirthdayCheckable {
+    static func checkForBirthday<T>(personWithPass: T) where T:Entrant {
         let date = Date()
         let calendar = Calendar.current
         let currentMonth = calendar.component(.month, from: date)
         let currentDay = calendar.component(.day, from: date)
         
-        guard let birthday = personWithPass.entrant.birthday else {
+        guard let birthday = personWithPass.birthday else {
             print("No birthday supplied, cannot check for birthday")
             return
         }
@@ -134,7 +135,7 @@ struct Kiosk {
         let entrantBirthdayDay = calendar.component(.day, from: convertedDate)
         
         if entrantBirthdayMonth == currentMonth && entrantBirthdayDay == currentDay {
-            print("Happy birthday \(personWithPass.entrant.firstName) \(personWithPass.entrant.lastName)!")
+            print("Happy birthday \(personWithPass.firstName) \(personWithPass.lastName)!")
         }
         
     }

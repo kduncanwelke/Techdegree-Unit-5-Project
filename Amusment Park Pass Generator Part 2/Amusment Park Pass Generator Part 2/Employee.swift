@@ -9,22 +9,36 @@
 import Foundation
 
 class Employee: Entrant, EmployeeRegistration {
-    
     let type: EmployeeType
+    
+    var firstName: String
+    var lastName: String
+    var birthday: String?
+    var streetAddress: String?
+    var city: String?
+    var state: String?
+    var zipCode: Int?
+    
     var vendorCompany: VendorCompanies?
     var visitDate: String?
     var projectNumber: ContractEmployeeProjectNumbers?
     
     init(type: EmployeeType, firstName: String, lastName: String, birthday: String?, streetAddress: String?, city: String?, state: String?, zipCode: Int?, vendorCompany: VendorCompanies? = nil, visitDate: String? = nil, projectNumber: ContractEmployeeProjectNumbers? = nil) {
-        self.type = type
         
-        if let vendorCompany = vendorCompany, let visitDate = visitDate, let projectNumber = projectNumber {
+        if let birthday = birthday, let streetAddress = streetAddress, let city = city, let state = state, let zipCode = zipCode, let vendorCompany = vendorCompany, let visitDate = visitDate, let projectNumber = projectNumber {
+            self.birthday = birthday
+            self.streetAddress = streetAddress
+            self.city = city
+            self.state = state
+            self.zipCode = zipCode
             self.vendorCompany = vendorCompany
             self.visitDate = visitDate
             self.projectNumber = projectNumber
         }
         
-        super.init(firstName: firstName, lastName: lastName, birthday: birthday, streetAddress: streetAddress, city: city, state: state, zipCode: zipCode)
+        self.type = type
+        self.firstName = firstName
+        self.lastName = lastName
     }
 }
 

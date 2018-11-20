@@ -10,8 +10,6 @@ import Foundation
 
 // classic pass, base
 class Pass {
-    
-
     var rideAccess: Bool { return true }
     var amusementAccess: Bool { return true }
     var skipRideLines: Bool { return false }
@@ -23,10 +21,6 @@ class Pass {
     var merchandiseDiscount: Int { return 0 }
     
     var passType: String { return PassType.ClassicPass.rawValue }
-    
-   /*init(entrant: Entrant) {
-        self.entrant = entrant
-    }*/
 }
 
 // classic pass
