@@ -10,15 +10,15 @@ import Foundation
 
 // enum of pass types
 enum PassType: String {
-    case ClassicPass = "Classic Pass"
-    case VIPPass = "VIP Pass"
-    case SeasonPass = "Season Pass"
-    case SeniorPass = "Senior Pass"
-    case FreeChildPass = "Free Child Pass"
-    case FoodServicePass = "Food Services Employee Pass"
-    case RideServicePass = "Ride Services Employee Pass"
-    case MaintenancePass = "Maintenance Employee Pass"
-    case ManagerPass = "Manager Pass"
-    case ContractorPass = "Contract Employee Pass"
-    case VendorPass = "Vendor Pass"
+    case classicPass = "Classic Pass"
+    case vipPass = "VIP Pass"
+    case seasonPass = "Season Pass"
+    case seniorPass = "Senior Pass"
+    case freeChildPass = "Free Child Pass"
+    case foodServicePass = "Food Services Employee Pass"
+    case rideServicePass = "Ride Services Employee Pass"
+    case maintenancePass = "Maintenance Employee Pass"
+    case managerPass = "Manager Pass"
+    case contractorPass = "Contract Employee Pass"
+    case vendorPass = "Vendor Pass"
 }

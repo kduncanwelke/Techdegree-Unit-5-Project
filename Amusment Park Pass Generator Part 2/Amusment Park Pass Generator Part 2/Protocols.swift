@@ -16,22 +16,9 @@ protocol Entrant {
     var city: String?  { get set }
     var state: String?  { get set }
     var zipCode: Int?  { get set }
-}
-
-// different implementations for each class
-protocol EntrantRegistration {
-}
-
-protocol GuestRegistration: EntrantRegistration {
-    func checkRequirements(entrant: Guest) throws
-    func isSubmissionErrorFree(entrant: Guest) -> Bool
-    //func generatePass(entrant: Guest) -> Pass?
-}
-
-protocol EmployeeRegistration: EntrantRegistration {
-    func checkRequirements(entrant: Employee) throws
-    func isSubmissionErrorFree(entrant: Employee) -> Bool
-    //func generatePass(entrant: Employee) -> Pass?
+    
+    func checkRequirements(entrant: Entrant) throws
+    func isSubmissionErrorFree(entrant: Entrant) -> Bool
 }
 
 protocol PassEntrant {

@@ -40,28 +40,28 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        let ClassicDefaultValues = Guest(type: .Classic, firstName: "A", lastName: "Person", birthday: "", streetAddress: "", city: "", state: "", zipCode: nil)
+        let ClassicDefaultValues = Guest(type: .classic, firstName: "A", lastName: "Person", birthday: "", streetAddress: "", city: "", state: "", zipCode: nil)
         
-        let VIPDefaultValues = Guest(type: .Vip, firstName: "This", lastName: "Human", birthday: "", streetAddress: "", city: "", state: "", zipCode: nil)
+        let VIPDefaultValues = Guest(type: .vip, firstName: "This", lastName: "Human", birthday: "", streetAddress: "", city: "", state: "", zipCode: nil)
         
-        let FreeChildDefaultValues = Guest(type: .FreeChild, firstName: "Child", lastName: "Person", birthday: "19/11/2016", streetAddress: "", city: "", state: "", zipCode: nil)
+        let FreeChildDefaultValues = Guest(type: .freeChild, firstName: "Child", lastName: "Person", birthday: "19/11/2016", streetAddress: "", city: "", state: "", zipCode: nil)
         
-        let SeasonDefaultValues = Guest(type: .SeasonPass, firstName: "Someone", lastName: "Somename", birthday: "", streetAddress: "A road somewhere", city: "Somecity", state: "Somestate", zipCode: 46789)
+        let SeasonDefaultValues = Guest(type: .seasonPass, firstName: "Someone", lastName: "Somename", birthday: "", streetAddress: "A road somewhere", city: "Somecity", state: "Somestate", zipCode: 46789)
         
-        let SeniorDefaultValues = Guest(type: .Senior, firstName: "Older", lastName: "Person", birthday: "01/01/1950", streetAddress: "", city: "", state: "", zipCode: nil)
+        let SeniorDefaultValues = Guest(type: .senior, firstName: "Older", lastName: "Person", birthday: "01/01/1950", streetAddress: "", city: "", state: "", zipCode: nil)
         
         
-        let FoodServiceDefaultValues = Employee(type: .FoodService, firstName: "Ahuman", lastName: "Person", birthday: "", streetAddress: "This road", city: "This city", state: "This state", zipCode: 47536)
+        let FoodServiceDefaultValues = Employee(type: .foodService, firstName: "Ahuman", lastName: "Person", birthday: "", streetAddress: "This road", city: "This city", state: "This state", zipCode: 47536)
         
-        let RideServiceDefaultValues = Employee(type: .RideService, firstName: "Somebody", lastName: "Withaname", birthday: "", streetAddress: "A street", city: "A city", state: "A state", zipCode: 63453)
+        let RideServiceDefaultValues = Employee(type: .rideService, firstName: "Somebody", lastName: "Withaname", birthday: "", streetAddress: "A street", city: "A city", state: "A state", zipCode: 63453)
         
-        let MaintenanceDefaultValues = Employee(type: .Maintenance, firstName: "Thename", lastName: "Somename", birthday: "", streetAddress: "A road somewhere", city: "Someplace", state: "Somestate", zipCode: 42651)
+        let MaintenanceDefaultValues = Employee(type: .maintenance, firstName: "Thename", lastName: "Somename", birthday: "", streetAddress: "A road somewhere", city: "Someplace", state: "Somestate", zipCode: 42651)
         
-        let ManagerDefaultValues = Employee(type: .Manager, firstName: "Named", lastName: "This", birthday: "", streetAddress: "This lane", city: "Thiscity", state: "Thisstate", zipCode: 34719)
+        let ManagerDefaultValues = Employee(type: .manager, firstName: "Named", lastName: "This", birthday: "", streetAddress: "This lane", city: "Thiscity", state: "Thisstate", zipCode: 34719)
         
-        let ContractEmployeeDefaultValues = Employee(type: .ContractEmployee, firstName: "Named", lastName: "Thisname", birthday: "", streetAddress: "Somewhere lane", city: "Inacity", state: "Inastate", zipCode: 19838, vendorCompany: nil, visitDate: nil, projectNumber: .FirstContract)
+        let ContractEmployeeDefaultValues = Employee(type: .contractEmployee, firstName: "Named", lastName: "Thisname", birthday: "", streetAddress: "Somewhere lane", city: "Inacity", state: "Inastate", zipCode: 19838, vendorCompany: nil, visitDate: nil, projectNumber: .firstContract)
         
-        let VendorDefaultValues = Employee(type: .Vendor, firstName: "Aperson", lastName: "Withaname", birthday: "10/10/1976", streetAddress: "", city: "", state: "", zipCode: nil, vendorCompany: .Fedex, visitDate: "19/11/2018", projectNumber: nil)
+        let VendorDefaultValues = Employee(type: .vendor, firstName: "Aperson", lastName: "Withaname", birthday: "10/10/1976", streetAddress: "", city: "", state: "", zipCode: nil, vendorCompany: .fedex, visitDate: "19/11/2018", projectNumber: nil)
         
         
         // Uncomment or comment out individual swipe actions to see results

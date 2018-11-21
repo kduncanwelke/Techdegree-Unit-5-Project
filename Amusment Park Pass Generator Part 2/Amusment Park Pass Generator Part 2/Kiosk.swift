@@ -10,31 +10,65 @@ import Foundation
 
 struct Kiosk {
     
-    static func generatePass<T>(entrant: T) -> Pass? where T:Entrant {
+    static func generatePass<T:Entrant>(entrant: T) -> Pass? {
         let success = entrant.isSubmissionErrorFree(entrant: entrant)
-        if success {
-            switch entrant.type {
-            case .ContractEmployee:
-                let pass = ContractPass(entrant: entrant)
-                return pass
-            case .FoodService:
-                let pass = FoodServicePass(entrant: entrant)
-                return pass
-            case .Maintenance:
-                let pass = MaintenancePass(entrant: entrant)
-                return pass
-            case .Manager:
-                let pass = ManagerPass(entrant: entrant)
-                return pass
-            case .RideService:
-                let pass = RideServicesPass(entrant: entrant)
-                return pass
-            case .Vendor:
-                let pass = VendorPass(entrant: entrant)
-                return pass
+        switch entrant {
+        case is Guest:
+            guard let guest = entrant as? Guest else { return nil }
+            
+            if success {
+                switch guest.type {
+                case .classic:
+                    let pass = ClassicPass(entrant: guest)
+                    return pass
+                case .freeChild:
+                    let pass = FreeChildPass(entrant: guest)
+                    return pass
+                case .seasonPass:
+                    let pass = SeasonPass(entrant: guest)
+                    return pass
+                case .senior:
+                    let pass = SeniorPass(entrant: guest)
+                    return pass
+                case .vip:
+                    let pass = VipPass(entrant: guest)
+                    return pass
+                }
+            } else {
+                print("Submission not error free, pass not generated")
+                return nil
             }
-        } else {
-            print("Submission not error free, pass not generated")
+            
+        case is Employee:
+            guard let employee = entrant as? Employee else { return nil }
+            
+            if success {
+                switch employee.type {
+                case .contractEmployee:
+                    let pass = ContractPass(entrant: employee)
+                    return pass
+                case .foodService:
+                    let pass = FoodServicePass(entrant: employee)
+                    return pass
+                case .maintenance:
+                    let pass = MaintenancePass(entrant: employee)
+                    return pass
+                case .manager:
+                    let pass = ManagerPass(entrant: employee)
+                    return pass
+                case .rideService:
+                    let pass = RideServicesPass(entrant: employee)
+                    return pass
+                case .vendor:
+                    let pass = VendorPass(entrant: employee)
+                    return pass
+                }
+            } else {
+                print("Submission not error free, pass not generated")
+                return nil
+            }
+            
+        default:
             return nil
         }
     }
@@ -52,7 +86,7 @@ struct Kiosk {
         
        // checkForBirthday(personWithPass: pass)
         switch forAccessTo {
-        case .Rides:
+        case .rides:
             if pass.rideAccess == true {
                 print("Able to access rides")
                 return true
@@ -60,7 +94,7 @@ struct Kiosk {
                 print("Access to rides denied")
                 return false
             }
-        case .Amusements:
+        case .amusements:
             if pass.amusementAccess == true {
                 print("Able to access amusements")
                 return true
@@ -68,7 +102,7 @@ struct Kiosk {
                 print("Access to amusements denied")
                 return false
             }
-        case .SkipLines:
+        case .skipLines:
             if pass.skipRideLines == true {
                 print("Able to skip ride lines")
                 return true
@@ -76,7 +110,7 @@ struct Kiosk {
                 print("Access to skipping ride lines denied")
                 return false
             }
-        case .Kitchen:
+        case .kitchen:
             if pass.kitchenAccess == true {
                 print("Able to access kitchen")
                 return true
@@ -84,7 +118,7 @@ struct Kiosk {
                 print("Access to kitchen denied")
                 return false
             }
-        case .RideControl:
+        case .rideControl:
             if pass.rideControlAccess == true {
                 print("Able to access ride control")
                 return true
@@ -92,7 +126,7 @@ struct Kiosk {
                 print("Access to ride control denied")
                 return false
             }
-        case .Maintenance:
+        case .maintenance:
             if pass.maintenanceAccess == true {
                 print("Able to access maintenance")
                 return true
@@ -100,7 +134,7 @@ struct Kiosk {
                 print("Access to maintenance denied")
                 return false
             }
-        case .Office:
+        case .office:
             if pass.officeAccess == true {
                 print("Able to access office")
                 return true
@@ -108,7 +142,7 @@ struct Kiosk {
                 print("Access to office denied")
                 return false
             }
-        case .FoodDiscount:
+        case .foodDiscount:
             if pass.foodDiscount != 0 {
                 print("Discount of \(pass.foodDiscount)")
                 return true
@@ -116,7 +150,7 @@ struct Kiosk {
                 print("No discount available")
                 return false
             }
-        case .MerchDiscount:
+        case .merchDiscount:
             if pass.merchandiseDiscount != 0 {
                 print("Discount of \(pass.merchandiseDiscount)")
                 return true
@@ -128,15 +162,15 @@ struct Kiosk {
     }
     
     enum AccessPoint {
-        case Rides
-        case Amusements
-        case SkipLines
-        case Kitchen
-        case RideControl
-        case Maintenance
-        case Office
-        case FoodDiscount
-        case MerchDiscount
+        case rides
+        case amusements
+        case skipLines
+        case kitchen
+        case rideControl
+        case maintenance
+        case office
+        case foodDiscount
+        case merchDiscount
     }
     
     

@@ -9,9 +9,9 @@
 import Foundation
 
 enum ContractEmployeeProjectNumbers: Int {
-    case FirstContract = 1001
-    case SecondContract = 1002
-    case ThirdContract = 1003
-    case FourthContract = 2001
-    case FifthContract = 2002
+    case firstContract = 1001
+    case secondContract = 1002
+    case thirdContract = 1003
+    case fourthContract = 2001
+    case fifthContract = 2002
 }

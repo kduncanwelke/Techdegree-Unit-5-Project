@@ -8,8 +8,8 @@
 
 import Foundation
 
-class Guest: Entrant, GuestRegistration {
-    let type: GuestType
+class Guest: Entrant {
+    var type: GuestType
     
     var firstName: String
     var lastName: String
@@ -34,12 +34,12 @@ class Guest: Entrant, GuestRegistration {
         self.lastName = lastName
     }
 
-enum GuestType {
-    case Classic
-    case Vip
-    case FreeChild
-    case SeasonPass
-    case Senior // in this app senior is considered 65+
+    enum GuestType {
+    case classic
+    case vip
+    case freeChild
+    case seasonPass
+    case senior // in this app senior is considered 65+
     }
 
 }

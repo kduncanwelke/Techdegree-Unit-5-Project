@@ -20,7 +20,7 @@ class Pass {
     var foodDiscount: Int { return 0 }
     var merchandiseDiscount: Int { return 0 }
     
-    var passType: String { return PassType.ClassicPass.rawValue }
+    var passType: String { return PassType.classicPass.rawValue }
 }
 
 // classic pass
@@ -39,7 +39,7 @@ class VipPass: Pass, GuestEntrant {
     override var skipRideLines: Bool { return true }
     override var foodDiscount: Int { return 10 }
     override var merchandiseDiscount: Int { return 20 }
-    override var passType: String { return PassType.VIPPass.rawValue }
+    override var passType: String { return PassType.vipPass.rawValue }
     
     init(entrant: Guest) {
         self.entrant = entrant
@@ -50,7 +50,7 @@ class VipPass: Pass, GuestEntrant {
 class FreeChildPass: Pass, GuestEntrant {
     var entrant: Guest
     
-    override var passType: String { return PassType.FreeChildPass.rawValue }
+    override var passType: String { return PassType.freeChildPass.rawValue }
     
     init(entrant: Guest) {
         self.entrant = entrant
@@ -64,7 +64,7 @@ class SeasonPass: Pass, GuestEntrant {
     override var skipRideLines: Bool { return true }
     override var foodDiscount: Int { return 10 }
     override var merchandiseDiscount: Int { return 20 }
-    override var passType: String { return PassType.SeasonPass.rawValue }
+    override var passType: String { return PassType.seasonPass.rawValue }
     
     init(entrant: Guest) {
         self.entrant = entrant
@@ -78,7 +78,7 @@ class SeniorPass: Pass, GuestEntrant {
     override var skipRideLines: Bool { return true }
     override var foodDiscount: Int { return 10 }
     override var merchandiseDiscount: Int { return 10 }
-    override var passType: String { return PassType.SeniorPass.rawValue }
+    override var passType: String { return PassType.seniorPass.rawValue }
     
     init(entrant: Guest) {
         self.entrant = entrant
@@ -92,7 +92,7 @@ class FoodServicePass: Pass, EmployeeEntrant {
     override var kitchenAccess: Bool { return true }
     override var foodDiscount: Int { return 15 }
     override var merchandiseDiscount: Int { return 25 }
-    override var passType: String { return PassType.FoodServicePass.rawValue }
+    override var passType: String { return PassType.foodServicePass.rawValue }
     
     init(entrant: Employee) {
         self.entrant = entrant
@@ -106,7 +106,7 @@ class RideServicesPass: Pass, EmployeeEntrant {
     override var rideControlAccess: Bool { return true }
     override var foodDiscount: Int { return 15 }
     override var merchandiseDiscount: Int { return 25 }
-    override var passType: String { return PassType.RideServicePass.rawValue }
+    override var passType: String { return PassType.rideServicePass.rawValue }
     
     init(entrant: Employee) {
         self.entrant = entrant
@@ -122,7 +122,7 @@ class MaintenancePass: Pass, EmployeeEntrant {
     override var maintenanceAccess: Bool { return true }
     override var foodDiscount: Int { return 15 }
     override var merchandiseDiscount: Int { return 25 }
-    override var passType: String { return PassType.MaintenancePass.rawValue }
+    override var passType: String { return PassType.maintenancePass.rawValue }
     
     init(entrant: Employee) {
         self.entrant = entrant
@@ -139,7 +139,7 @@ class ManagerPass: Pass, EmployeeEntrant {
     override var maintenanceAccess: Bool { return true }
     override var foodDiscount: Int { return 25 }
     override var merchandiseDiscount: Int { return 25 }
-    override var passType: String { return PassType.ManagerPass.rawValue }
+    override var passType: String { return PassType.managerPass.rawValue }
     
     init(entrant: Employee) {
         self.entrant = entrant
@@ -154,7 +154,7 @@ class ContractPass: Pass, EmployeeEntrant {
     
     override var amusementAccess: Bool {
         switch entrant.projectNumber {
-        case .FirstContract?, .SecondContract?, .ThirdContract?:
+        case .firstContract?, .secondContract?, .thirdContract?:
             return true
         default:
             return false
@@ -162,7 +162,7 @@ class ContractPass: Pass, EmployeeEntrant {
     }
     override var rideControlAccess: Bool {
         switch entrant.projectNumber {
-        case .FirstContract?, .SecondContract?, .ThirdContract?:
+        case .firstContract?, .secondContract?, .thirdContract?:
             return true
         default:
             return false
@@ -170,7 +170,7 @@ class ContractPass: Pass, EmployeeEntrant {
     }
     override var kitchenAccess: Bool {
         switch entrant.projectNumber {
-        case .ThirdContract?, .FifthContract?:
+        case .thirdContract?, .fifthContract?:
             return true
         default:
             return false
@@ -178,7 +178,7 @@ class ContractPass: Pass, EmployeeEntrant {
     }
     override var maintenanceAccess: Bool {
         switch entrant.projectNumber {
-        case .SecondContract?, .ThirdContract?, .FifthContract?:
+        case .secondContract?, .thirdContract?, .fifthContract?:
             return true
         default:
             return false
@@ -186,13 +186,13 @@ class ContractPass: Pass, EmployeeEntrant {
     }
     override var officeAccess: Bool {
         switch entrant.projectNumber {
-        case .ThirdContract?, .FourthContract?:
+        case .thirdContract?, .fourthContract?:
             return true
         default:
             return false
         }
     }
-    override var passType: String { return PassType.ContractorPass.rawValue }
+    override var passType: String { return PassType.contractorPass.rawValue }
     
     init(entrant: Employee) {
         self.entrant = entrant
@@ -207,7 +207,7 @@ class VendorPass: Pass, EmployeeEntrant {
     
     override var amusementAccess: Bool {
         switch entrant.vendorCompany {
-        case .Orkin?, .NWElectrical?:
+        case .orkin?, .nwElectrical?:
             return true
         default:
             return false
@@ -215,7 +215,7 @@ class VendorPass: Pass, EmployeeEntrant {
     }
     override var rideControlAccess: Bool {
         switch entrant.vendorCompany {
-        case .Orkin?, .NWElectrical?:
+        case .orkin?, .nwElectrical?:
             return true
         default:
             return false
@@ -223,7 +223,7 @@ class VendorPass: Pass, EmployeeEntrant {
     }
     override var kitchenAccess: Bool {
         switch entrant.vendorCompany {
-        case .Acme?, .Orkin?, .NWElectrical?:
+        case .acme?, .orkin?, .nwElectrical?:
             return true
         default:
             return false
@@ -231,7 +231,7 @@ class VendorPass: Pass, EmployeeEntrant {
     }
     override var maintenanceAccess: Bool {
         switch entrant.vendorCompany {
-        case .Fedex?, .NWElectrical?:
+        case .fedex?, .nwElectrical?:
             return true
         default:
             return false
@@ -239,13 +239,13 @@ class VendorPass: Pass, EmployeeEntrant {
     }
     override var officeAccess: Bool {
         switch entrant.vendorCompany {
-        case .Fedex?, .NWElectrical?:
+        case .fedex?, .nwElectrical?:
             return true
         default:
             return false
         }
     }
-    override var passType: String { return PassType.VendorPass.rawValue }
+    override var passType: String { return PassType.vendorPass.rawValue }
     
     init(entrant: Employee) {
         self.entrant = entrant

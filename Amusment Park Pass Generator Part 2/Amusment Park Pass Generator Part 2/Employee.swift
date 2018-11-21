@@ -8,8 +8,8 @@
 
 import Foundation
 
-class Employee: Entrant, EmployeeRegistration {
-    let type: EmployeeType
+class Employee: Entrant {
+    var type: EmployeeType
     
     var firstName: String
     var lastName: String
@@ -43,12 +43,12 @@ class Employee: Entrant, EmployeeRegistration {
 }
 
 enum EmployeeType {
-    case FoodService
-    case RideService
-    case Maintenance
-    case Manager
-    case ContractEmployee
-    case Vendor
+    case foodService
+    case rideService
+    case maintenance
+    case manager
+    case contractEmployee
+    case vendor
 }
 
 
