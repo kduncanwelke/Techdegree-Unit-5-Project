@@ -10,6 +10,36 @@ import Foundation
 
 struct Kiosk {
     
+    static func generatePass<T>(entrant: T) -> Pass? where T:Entrant {
+        let success = entrant.isSubmissionErrorFree(entrant: entrant)
+        if success {
+            switch entrant.type {
+            case .ContractEmployee:
+                let pass = ContractPass(entrant: entrant)
+                return pass
+            case .FoodService:
+                let pass = FoodServicePass(entrant: entrant)
+                return pass
+            case .Maintenance:
+                let pass = MaintenancePass(entrant: entrant)
+                return pass
+            case .Manager:
+                let pass = ManagerPass(entrant: entrant)
+                return pass
+            case .RideService:
+                let pass = RideServicesPass(entrant: entrant)
+                return pass
+            case .Vendor:
+                let pass = VendorPass(entrant: entrant)
+                return pass
+            }
+        } else {
+            print("Submission not error free, pass not generated")
+            return nil
+        }
+    }
+
+    
     // swipe function, checks for birthday and access to given access point
     static func swipe(pass: Pass, forAccessTo: AccessPoint) -> Bool {
         guard TimerHandling.seconds == 0 else {

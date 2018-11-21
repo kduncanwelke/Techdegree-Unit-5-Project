@@ -120,7 +120,7 @@ extension Guest {
         
     }
     
-    func generatePass(entrant: Guest) -> Pass? {
+    /*func generatePass(entrant: Guest) -> Pass? {
         let success = entrant.isSubmissionErrorFree(entrant: entrant)
         if success {
             switch entrant.type {
@@ -145,7 +145,7 @@ extension Guest {
             print("Submission not error free, pass not generated")
             return nil
         }
-    }
+    }*/
 }
 
 
@@ -234,7 +234,7 @@ extension Employee {
         return true
     }
     
-    func generatePass(entrant: Employee) -> Pass? {
+   /* func generatePass(entrant: Employee) -> Pass? {
         let success = entrant.isSubmissionErrorFree(entrant: entrant)
         if success {
             switch entrant.type {
@@ -261,6 +261,6 @@ extension Employee {
             print("Submission not error free, pass not generated")
             return nil
         }
-    }
+    }*/
 }
 

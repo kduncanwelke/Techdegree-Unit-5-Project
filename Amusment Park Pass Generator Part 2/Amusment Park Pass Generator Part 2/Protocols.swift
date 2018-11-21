@@ -25,13 +25,13 @@ protocol EntrantRegistration {
 protocol GuestRegistration: EntrantRegistration {
     func checkRequirements(entrant: Guest) throws
     func isSubmissionErrorFree(entrant: Guest) -> Bool
-    func generatePass(entrant: Guest) -> Pass?
+    //func generatePass(entrant: Guest) -> Pass?
 }
 
 protocol EmployeeRegistration: EntrantRegistration {
     func checkRequirements(entrant: Employee) throws
     func isSubmissionErrorFree(entrant: Employee) -> Bool
-    func generatePass(entrant: Employee) -> Pass?
+    //func generatePass(entrant: Employee) -> Pass?
 }
 
 protocol PassEntrant {

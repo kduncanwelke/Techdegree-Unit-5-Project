@@ -10,6 +10,12 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    
+    @IBOutlet weak var guestButton: UIButton!
+    @IBOutlet weak var specialButton: UIButton!
+    @IBOutlet weak var employeeButton: UIButton!
+    @IBOutlet weak var servicesButton: UIButton!
+    
     @IBOutlet weak var button1: UIButton!
     @IBOutlet weak var button2: UIButton!
     @IBOutlet weak var button3: UIButton!
@@ -136,37 +142,60 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func guestButtonPressed(_ sender: UIButton) {
-        button1.setTitle("Classic", for: .normal)
-        button2.setTitle("Child", for: .normal)
-        button3.setTitle("Season", for: .normal)
-        button3.isHidden = false
-        button4.isHidden = true
+    
+    @IBAction func selectType(_ sender: UIButton) {
+        switch sender.tag {
+        case 1:
+            button4.isHidden = true
+            guestButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
+            specialButton.titleLabel?.font = UIFont.systemFont(ofSize: 20)
+            employeeButton.titleLabel?.font = UIFont.systemFont(ofSize: 20)
+            servicesButton.titleLabel?.font = UIFont.systemFont(ofSize: 20)
+            
+            button1.setTitle("Classic", for: .normal)
+            button2.setTitle("Child", for: .normal)
+            button3.setTitle("Season", for: .normal)
+            
+            button3.isHidden = false
+        case 2:
+            button3.isHidden = true
+            button4.isHidden = true
+            specialButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
+            guestButton.titleLabel?.font = UIFont.systemFont(ofSize: 20)
+            employeeButton.titleLabel?.font = UIFont.systemFont(ofSize: 20)
+            servicesButton.titleLabel?.font = UIFont.systemFont(ofSize: 20)
+            
+            button1.setTitle("VIP", for: .normal)
+            button2.setTitle("Season Pass", for: .normal)
+        case 3:
+            employeeButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
+            specialButton.titleLabel?.font = UIFont.systemFont(ofSize: 20)
+            guestButton.titleLabel?.font = UIFont.systemFont(ofSize: 20)
+            servicesButton.titleLabel?.font = UIFont.systemFont(ofSize: 20)
+            
+            button1.setTitle("Food Services", for: .normal)
+            button2.setTitle("Ride Services", for: .normal)
+            button3.setTitle("Maintenance", for: .normal)
+            button4.setTitle("Manager", for: .normal)
+            
+            button3.isHidden = false
+            button4.isHidden = false
+        case 4:
+            button3.isHidden = true
+            button4.isHidden = true
+            servicesButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
+            specialButton.titleLabel?.font = UIFont.systemFont(ofSize: 20)
+            employeeButton.titleLabel?.font = UIFont.systemFont(ofSize: 20)
+            guestButton.titleLabel?.font = UIFont.systemFont(ofSize: 20)
+            
+            button1.setTitle("Contractor", for: .normal)
+            button2.setTitle("Vendor", for: .normal)
+        default:
+            break
+        }
     }
     
-    @IBAction func specialButtonPressed(_ sender: UIButton) {
-        button1.setTitle("VIP", for: .normal)
-        button2.setTitle("Season Pass", for: .normal)
-        button3.isHidden = true
-        button4.isHidden = true
-    }
-    
-    @IBAction func employeeButtonPressed(_ sender: UIButton) {
-        button1.setTitle("Food Services", for: .normal)
-        button2.setTitle("Ride Services", for: .normal)
-        button3.setTitle("Maintenance", for: .normal)
-        button4.setTitle("Manager", for: .normal)
-        button3.isHidden = false
-        button4.isHidden = false
-    }
-    
-    @IBAction func servicesButtonPressed(_ sender: UIButton) {
-        button1.setTitle("Contractor", for: .normal)
-        button2.setTitle("Vendor", for: .normal)
-        button3.isHidden = true
-        button4.isHidden = true
-    }
-    
+   
     @IBAction func populateDateButtonPressed(_ sender: Any) {
         
     }
