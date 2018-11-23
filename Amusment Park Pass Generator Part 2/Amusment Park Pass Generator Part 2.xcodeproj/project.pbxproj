@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D18C2A721A6262200B10A6D /* DummyData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D18C2A621A6262200B10A6D /* DummyData.swift */; };
 		2D93CFF02192366B00C996AC /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D93CFEF2192366B00C996AC /* Errors.swift */; };
 		2D93CFF221924BED00C996AC /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D93CFF121924BED00C996AC /* Protocols.swift */; };
 		2D97540B2199E352000CEA88 /* Kiosk.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D97540A2199E352000CEA88 /* Kiosk.swift */; };
@@ -28,6 +29,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2D18C2A621A6262200B10A6D /* DummyData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyData.swift; sourceTree = "<group>"; };
 		2D93CFEF2192366B00C996AC /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		2D93CFF121924BED00C996AC /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		2D97540A2199E352000CEA88 /* Kiosk.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Kiosk.swift; sourceTree = "<group>"; };
@@ -85,6 +87,7 @@
 				2DCAFBAB218CF6F500441BE9 /* Main.storyboard */,
 				2DC892CE21A0D0E70097735C /* PassViewController.swift */,
 				2DCAFBA9218CF6F500441BE9 /* ViewController.swift */,
+				2D18C2A621A6262200B10A6D /* DummyData.swift */,
 				2D93CFEF2192366B00C996AC /* Errors.swift */,
 				2D93CFF121924BED00C996AC /* Protocols.swift */,
 				2DCAFBBD218D081A00441BE9 /* Guest.swift */,
@@ -179,6 +182,7 @@
 				2D93CFF02192366B00C996AC /* Errors.swift in Sources */,
 				2D9EE4102193973B00F9132B /* PassTypes.swift in Sources */,
 				2DCAFBBE218D081A00441BE9 /* Guest.swift in Sources */,
+				2D18C2A721A6262200B10A6D /* DummyData.swift in Sources */,
 				2DF4C1A92195061800BA4862 /* Extensions.swift in Sources */,
 				2DCAFBC0218D083D00441BE9 /* Employee.swift in Sources */,
 				2DCAFBBC218CF71F00441BE9 /* Pass.swift in Sources */,

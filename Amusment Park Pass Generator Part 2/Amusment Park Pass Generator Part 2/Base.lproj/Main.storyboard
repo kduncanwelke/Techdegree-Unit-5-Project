@@ -29,6 +29,7 @@
                                             <constraint firstAttribute="height" constant="60" id="jJm-Pg-1V4"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <size key="titleShadowOffset" width="0.0" height="-1"/>
                                         <state key="normal" title="Guest"/>
                                         <connections>
                                             <action selector="selectType:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Rgf-ic-qWN"/>
@@ -75,7 +76,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="zIG-Ca-Il4" userLabel="Pass Type">
                                 <rect key="frame" x="0.0" y="60" width="768" height="45"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z77-5T-aFo">
+                                    <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z77-5T-aFo">
                                         <rect key="frame" x="0.0" y="0.0" width="192" height="45"/>
                                         <color key="backgroundColor" red="0.37055522200000002" green="0.37056469920000001" blue="0.37055957319999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
@@ -83,9 +84,11 @@
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <state key="normal" title="Food Services"/>
+                                        <connections>
+                                            <action selector="selectPass:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Zit-9y-p9B"/>
+                                        </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BJw-bK-J4Z">
+                                    <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BJw-bK-J4Z">
                                         <rect key="frame" x="192" y="0.0" width="192" height="45"/>
                                         <color key="backgroundColor" red="0.37055522200000002" green="0.37056469920000001" blue="0.37055957319999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
@@ -93,9 +96,11 @@
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <state key="normal" title="Ride Services"/>
+                                        <connections>
+                                            <action selector="selectPass:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cq7-oq-NqY"/>
+                                        </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kKP-sU-TEL">
+                                    <button opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kKP-sU-TEL">
                                         <rect key="frame" x="384" y="0.0" width="192" height="45"/>
                                         <color key="backgroundColor" red="0.37055522200000002" green="0.37056469920000001" blue="0.37055957319999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
@@ -103,9 +108,11 @@
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <state key="normal" title="Maintenance"/>
+                                        <connections>
+                                            <action selector="selectPass:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0JS-2r-VA5"/>
+                                        </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CWc-hz-EtN">
+                                    <button opaque="NO" tag="8" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CWc-hz-EtN">
                                         <rect key="frame" x="576" y="0.0" width="192" height="45"/>
                                         <color key="backgroundColor" red="0.37055522200000002" green="0.37056469920000001" blue="0.37055957319999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
@@ -113,7 +120,9 @@
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <state key="normal" title="Manager"/>
+                                        <connections>
+                                            <action selector="selectPass:" destination="BYZ-38-t0r" eventType="touchUpInside" id="70c-y8-Ulo"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -143,13 +152,13 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="EqW-UB-waC">
                                         <rect key="frame" x="249.5" y="0.0" width="229" height="90.5"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SSN" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="maE-yd-v8N">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date of Visit" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="maE-yd-v8N">
                                                 <rect key="frame" x="0.0" y="0.0" width="229" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                                 <color key="textColor" red="0.37055522200000002" green="0.37056469920000001" blue="0.37055957319999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="###-##-####" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="91J-gE-uup">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="MM/DD/YYYY" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="91J-gE-uup">
                                                 <rect key="frame" x="0.0" y="30.5" width="229" height="60"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="60" id="hZ4-ue-g5p"/>
@@ -396,6 +405,7 @@
                         <outlet property="button4" destination="CWc-hz-EtN" id="Cyy-UJ-8TD"/>
                         <outlet property="cityEntry" destination="hCV-wY-fpv" id="IWv-Yv-WaJ"/>
                         <outlet property="companyEntry" destination="1g3-U2-F5G" id="dqf-S0-BYY"/>
+                        <outlet property="dateOfVisit" destination="91J-gE-uup" id="WIK-Iv-mg2"/>
                         <outlet property="dobEntry" destination="Hvz-Vn-QP1" id="36k-JB-1CI"/>
                         <outlet property="employeeButton" destination="q8A-RT-HOV" id="aKg-mW-qB1"/>
                         <outlet property="firstNameEntry" destination="kiI-PE-Ex6" id="B5c-jp-OIN"/>
@@ -404,7 +414,6 @@
                         <outlet property="projectNumberEntry" destination="uf1-7E-wdC" id="awO-ON-S8c"/>
                         <outlet property="servicesButton" destination="RNA-AU-kcZ" id="AZp-Hf-nh4"/>
                         <outlet property="specialButton" destination="jDs-ZC-W2l" id="lvy-Yb-qST"/>
-                        <outlet property="ssnEntry" destination="91J-gE-uup" id="hRn-qc-hcw"/>
                         <outlet property="stateEntry" destination="hXd-zB-iLg" id="Z6W-Nt-pi2"/>
                         <outlet property="zipcodeEntry" destination="4bH-5Z-xNu" id="16O-tr-5s0"/>
                         <segue destination="C9D-jl-3yQ" kind="showDetail" identifier="viewPass" id="pnU-Fa-g38"/>
