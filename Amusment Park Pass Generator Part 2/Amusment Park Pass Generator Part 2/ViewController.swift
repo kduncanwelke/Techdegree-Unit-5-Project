@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var guestButton: UIButton!
     @IBOutlet weak var specialButton: UIButton!
@@ -39,6 +39,15 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        firstNameEntry.delegate = self
+        lastNameEntry.delegate = self
+        companyEntry.delegate = self
+        addressEntry.delegate = self
+        cityEntry.delegate = self
+        stateEntry.delegate = self
+        
+        zipcodeEntry.delegate = self
+        projectNumberEntry.delegate = self
         
         // have all fields initially disabled until type is selected
         dobEntry.isEnabled = false
@@ -163,6 +172,23 @@ class ViewController: UIViewController {
         stateEntry.text = ""
         zipcodeEntry.text = ""
     }
+    
+    // limit textfield input to 30 characters
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if textField == zipcodeEntry || textField == projectNumberEntry {
+            let allowedCharacters = CharacterSet.decimalDigits
+            let characterSet = CharacterSet(charactersIn: string)
+            return allowedCharacters.isSuperset(of: characterSet)
+        }
+        
+        let currentText = textField.text ?? ""
+        guard let stringRange = Range(range, in: currentText) else { return false }
+        
+        let updatedText = currentText.replacingCharacters(in: stringRange, with: string)
+        
+        return updatedText.count <= 30
+    }
+    
     
     @IBAction func selectType(_ sender: UIButton) {
         switch sender.tag {

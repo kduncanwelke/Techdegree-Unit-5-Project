@@ -9,11 +9,11 @@
 import UIKit
 
 class PassViewController: UIViewController {
-
+    
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var passTypeLabel: UILabel!
-    @IBOutlet weak var passQualitiesLabel: UILabel!
-    
+    @IBOutlet weak var passDetailsLabel: UILabel!
+   
     @IBOutlet weak var testResultsLabel: UILabel!
     
     var createdPass: Pass?
@@ -23,7 +23,6 @@ class PassViewController: UIViewController {
         
         updateUI()
 
-        print("\(createdPass)")
         // Do any additional setup after loading the view.
     }
 
