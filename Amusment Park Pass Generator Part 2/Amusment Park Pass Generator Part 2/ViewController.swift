@@ -39,7 +39,18 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        let person = Employee(type: .contractEmployee, firstName: "ugdk", lastName: "sgk", birthday: "", streetAddress: "kfgdhj", city: "gkud", state: "sgkuh", zipCode: 5767, vendorCompany: nil, visitDate: "", projectNumber: nil)
+        
+        // have all fields initially disabled until type is selected
+        dobEntry.isEnabled = false
+        dateOfVisit.isEnabled = false
+        projectNumberEntry.isEnabled = false
+        firstNameEntry.isEnabled = false
+        lastNameEntry.isEnabled = false
+        companyEntry.isEnabled = false
+        addressEntry.isEnabled = false
+        cityEntry.isEnabled = false
+        stateEntry.isEnabled = false
+        zipcodeEntry.isEnabled = false
    
     }
     
@@ -53,6 +64,8 @@ class ViewController: UIViewController {
         dobEntry.isEnabled = false
         dateOfVisit.isEnabled = false
         projectNumberEntry.isEnabled = false
+        firstNameEntry.isEnabled = true
+        lastNameEntry.isEnabled = true
         companyEntry.isEnabled = false
         addressEntry.isEnabled = false
         cityEntry.isEnabled = false
@@ -64,6 +77,8 @@ class ViewController: UIViewController {
         dobEntry.isEnabled = true
         dateOfVisit.isEnabled = false
         projectNumberEntry.isEnabled = false
+        firstNameEntry.isEnabled = true
+        lastNameEntry.isEnabled = true
         companyEntry.isEnabled = false
         addressEntry.isEnabled = false
         cityEntry.isEnabled = false
@@ -75,6 +90,8 @@ class ViewController: UIViewController {
         dobEntry.isEnabled = false
         dateOfVisit.isEnabled = false
         projectNumberEntry.isEnabled = false
+        firstNameEntry.isEnabled = true
+        lastNameEntry.isEnabled = true
         companyEntry.isEnabled = false
         addressEntry.isEnabled = true
         cityEntry.isEnabled = true
@@ -86,6 +103,8 @@ class ViewController: UIViewController {
         dobEntry.isEnabled = true
         dateOfVisit.isEnabled = false
         projectNumberEntry.isEnabled = false
+        firstNameEntry.isEnabled = true
+        lastNameEntry.isEnabled = true
         companyEntry.isEnabled = false
         addressEntry.isEnabled = false
         cityEntry.isEnabled = false
@@ -97,6 +116,8 @@ class ViewController: UIViewController {
         dobEntry.isEnabled = false
         dateOfVisit.isEnabled = false
         projectNumberEntry.isEnabled = false
+        firstNameEntry.isEnabled = true
+        lastNameEntry.isEnabled = true
         companyEntry.isEnabled = false
         addressEntry.isEnabled = true
         cityEntry.isEnabled = true
@@ -108,6 +129,8 @@ class ViewController: UIViewController {
         dobEntry.isEnabled = false
         dateOfVisit.isEnabled = false
         projectNumberEntry.isEnabled = true
+        firstNameEntry.isEnabled = true
+        lastNameEntry.isEnabled = true
         companyEntry.isEnabled = false
         addressEntry.isEnabled = true
         cityEntry.isEnabled = true
@@ -119,6 +142,8 @@ class ViewController: UIViewController {
         dobEntry.isEnabled = true
         dateOfVisit.isEnabled = true
         projectNumberEntry.isEnabled = false
+        firstNameEntry.isEnabled = true
+        lastNameEntry.isEnabled = true
         companyEntry.isEnabled = true
         addressEntry.isEnabled = false
         cityEntry.isEnabled = false
@@ -228,13 +253,16 @@ class ViewController: UIViewController {
     
     
     @IBAction func selectPass(_ sender: UIButton) {
+        // change selected button color to light blue
+        sender.setTitleColor(UIColor(red: 0.4627, green: 0.8392, blue: 1, alpha: 1.0) /* #76d6ff */, for: .selected)
+        
         switch sender.tag {
         case 5:
             button1.isSelected = true
             button2.isSelected = false
             button3.isSelected = false
             button4.isSelected = false
-            
+           
             if guestButton.isSelected || specialButton.isSelected {
                 toggleGuestButtons()
             } else if employeeButton.isSelected {
@@ -287,19 +315,20 @@ class ViewController: UIViewController {
         default:
             break
         }
+        
     }
     
     @IBAction func generatePassButtonPressed(_ sender: UIButton) {
         guard let firstName = firstNameEntry.text else { return }
         guard let lastName = lastNameEntry.text else { return }
-        var dob = dobEntry.text
-        var address = addressEntry.text
-        var city = cityEntry.text
-        var state = stateEntry.text
-        var zipCode = Int(zipcodeEntry.text!)
-        var company = companyEntry.text
-        var visit = dateOfVisit.text
-        var number = Int(projectNumberEntry.text!)
+        let dob = dobEntry.text
+        let address = addressEntry.text
+        let city = cityEntry.text
+        let state = stateEntry.text
+        let zipCode = Int(zipcodeEntry.text!)
+        let company = companyEntry.text
+        let visit = dateOfVisit.text
+        let number = Int(projectNumberEntry.text!)
         
         if guestButton.isSelected {
             if button1.isSelected {

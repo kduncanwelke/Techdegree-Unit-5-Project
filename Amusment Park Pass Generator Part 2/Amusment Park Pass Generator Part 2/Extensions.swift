@@ -10,11 +10,10 @@ import Foundation
 
 extension Entrant {
     // check that all required values are present
-    func checkRequirements<T:Entrant>(entrant: T) throws {
+    func checkRequirements() throws {
         // check requirements for guest type
-        switch entrant {
-        case is Guest.Type:
-            guard let guest = entrant as? Guest else { return }
+        switch self {
+        case let guest as Guest:
         
             if guest.firstName == "" {
                 throw GuestRegistrationErrors.invalidFirstName
@@ -56,8 +55,7 @@ extension Entrant {
                 break
             }
         // check requirements for employee type
-        case is Employee.Type:
-            guard let employee = entrant as? Employee else { return }
+        case let employee as Employee:
             
             if employee.firstName == "" {
                 throw EmployeeRegistrationErrors.invalidFirstName
@@ -103,12 +101,12 @@ extension Entrant {
     }
     
     // check that submission is error-free
-    func isSubmissionErrorFree<T:Entrant>(entrant: T) -> Bool {
+    func isSubmissionErrorFree() -> Bool {
         // check guest type for errors
-        switch entrant {
-        case is Guest.Type:
+        switch self {
+        case let guest as Guest:
             do {
-                try checkRequirements(entrant: entrant)
+                try guest.checkRequirements()
             } catch GuestRegistrationErrors.invalidFirstName {
                 print("Invalid first name")
                 return false
@@ -144,9 +142,9 @@ extension Entrant {
             return true
         
         // check employee type for errors
-        case is Employee.Type:
+        case let employee as Employee:
             do {
-                try checkRequirements(entrant: entrant)
+                try employee.checkRequirements()
             } catch EmployeeRegistrationErrors.invalidFirstName {
                 print("Invalid first naeme")
                 return false
@@ -183,10 +181,10 @@ extension Entrant {
             }
             print("error free")
             return true
-            
         default:
-            return false
+            break
         }
+        return true // if no errors were thrown (aka false bools returned) return true to satisfy return requirement
     }
 
     // run when checking freechild age, converting entered string into date

@@ -11,7 +11,7 @@ import Foundation
 struct Kiosk {
     
     static func generatePass<T:Entrant>(entrant: T) -> Pass? {
-        let success = entrant.isSubmissionErrorFree(entrant: entrant)
+        let success = entrant.isSubmissionErrorFree()
         switch entrant {
         case is Guest:
             guard let guest = entrant as? Guest else { return nil }

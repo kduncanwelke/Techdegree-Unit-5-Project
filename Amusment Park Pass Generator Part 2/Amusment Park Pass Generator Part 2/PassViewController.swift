@@ -164,5 +164,9 @@ class PassViewController: UIViewController {
         }
     }
     
-
+    
+    @IBAction func createNewPassButtonPressed(_ sender: UIButton) {
+        performSegue(withIdentifier: "backToCreation", sender: (Any).self)
+    }
+    
 }
