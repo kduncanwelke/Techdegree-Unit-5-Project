@@ -357,6 +357,9 @@
                                         </constraints>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                         <state key="normal" title="Generate Pass"/>
+                                        <connections>
+                                            <action selector="generatePassButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cb8-Gh-GKz"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5de-sE-3eM">
                                         <rect key="frame" x="374" y="0.0" width="354" height="60"/>
@@ -422,10 +425,10 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
         </scene>
-        <!--View Controller-->
+        <!--Pass View Controller-->
         <scene sceneID="1Fo-OF-cg9">
             <objects>
-                <viewController id="C9D-jl-3yQ" sceneMemberID="viewController">
+                <viewController id="C9D-jl-3yQ" customClass="PassViewController" customModule="Amusment_Park_Pass_Generator_Part_1" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ZxM-yB-6r5">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -492,8 +495,8 @@
                                     <constraint firstItem="jdg-kH-IUA" firstAttribute="leading" secondItem="jN4-gz-xZD" secondAttribute="leading" constant="60" id="vML-UY-qcL"/>
                                 </constraints>
                             </view>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="QR4-aV-Cl6">
-                                <rect key="frame" x="20" y="470" width="728" height="150.5"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="QR4-aV-Cl6">
+                                <rect key="frame" x="20" y="460" width="728" height="212.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Access Testing" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IBy-B6-8CD">
                                         <rect key="frame" x="0.0" y="0.0" width="728" height="30"/>
@@ -502,50 +505,114 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Confirm the pass has the expected access capacities." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e97-UQ-hGP">
-                                        <rect key="frame" x="0.0" y="50" width="728" height="20.5"/>
+                                        <rect key="frame" x="0.0" y="45" width="728" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="7aM-CX-6x3">
-                                        <rect key="frame" x="0.0" y="90.5" width="728" height="60"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="7aM-CX-6x3">
+                                        <rect key="frame" x="0.0" y="80.5" width="728" height="34"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wvA-Uf-uBx">
-                                                <rect key="frame" x="0.0" y="0.0" width="229.5" height="60"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="236" height="34"/>
                                                 <color key="backgroundColor" red="0.46202266219999999" green="0.83828371759999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="60" id="O4o-ze-WN2"/>
-                                                </constraints>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                                <state key="normal" title="Area Access"/>
+                                                <state key="normal" title="Rides"/>
+                                                <connections>
+                                                    <action selector="testAccess:" destination="C9D-jl-3yQ" eventType="touchUpInside" id="Sad-Wi-hzg"/>
+                                                </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uPO-ra-ejk">
-                                                <rect key="frame" x="249.5" y="0.0" width="229" height="60"/>
+                                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uPO-ra-ejk">
+                                                <rect key="frame" x="246" y="0.0" width="236" height="34"/>
                                                 <color key="backgroundColor" red="0.46202266219999999" green="0.83828371759999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="60" id="glv-X0-lMb"/>
-                                                </constraints>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                                <state key="normal" title="Ride Access"/>
+                                                <state key="normal" title="Amusements"/>
+                                                <connections>
+                                                    <action selector="testAccess:" destination="C9D-jl-3yQ" eventType="touchUpInside" id="qLR-N6-yCR"/>
+                                                </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P8e-Pv-6ei">
-                                                <rect key="frame" x="498.5" y="0.0" width="229.5" height="60"/>
+                                            <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P8e-Pv-6ei">
+                                                <rect key="frame" x="492" y="0.0" width="236" height="34"/>
                                                 <color key="backgroundColor" red="0.46202266219999999" green="0.83828371759999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="60" id="8h5-bV-kkg"/>
-                                                </constraints>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                                <state key="normal" title="Discount Access"/>
+                                                <state key="normal" title="Skip Lines"/>
+                                                <connections>
+                                                    <action selector="testAccess:" destination="C9D-jl-3yQ" eventType="touchUpInside" id="kKf-ZC-DXq"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="hYS-3C-Xao">
+                                        <rect key="frame" x="0.0" y="129.5" width="728" height="34"/>
+                                        <subviews>
+                                            <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xqu-gk-9aN">
+                                                <rect key="frame" x="0.0" y="0.0" width="236" height="34"/>
+                                                <color key="backgroundColor" red="0.46202266219999999" green="0.83828371759999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                                <state key="normal" title="Kitchens"/>
+                                                <connections>
+                                                    <action selector="testAccess:" destination="C9D-jl-3yQ" eventType="touchUpInside" id="0eP-NZ-ODo"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3E7-Yr-STb">
+                                                <rect key="frame" x="246" y="0.0" width="236" height="34"/>
+                                                <color key="backgroundColor" red="0.46202266219999999" green="0.83828371759999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                                <state key="normal" title="Ride Control"/>
+                                                <connections>
+                                                    <action selector="testAccess:" destination="C9D-jl-3yQ" eventType="touchUpInside" id="Cji-73-vPb"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8YQ-jc-sPu">
+                                                <rect key="frame" x="492" y="0.0" width="236" height="34"/>
+                                                <color key="backgroundColor" red="0.46202266219999999" green="0.83828371759999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                                <state key="normal" title="Maintenance"/>
+                                                <connections>
+                                                    <action selector="testAccess:" destination="C9D-jl-3yQ" eventType="touchUpInside" id="ntd-eE-YeM"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="r3U-Fs-bRh">
+                                        <rect key="frame" x="0.0" y="178.5" width="728" height="34"/>
+                                        <subviews>
+                                            <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JwG-nX-c8G">
+                                                <rect key="frame" x="0.0" y="0.0" width="236" height="34"/>
+                                                <color key="backgroundColor" red="0.46202266219999999" green="0.83828371759999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                                <state key="normal" title="Office"/>
+                                                <connections>
+                                                    <action selector="testAccess:" destination="C9D-jl-3yQ" eventType="touchUpInside" id="b6r-rI-ngp"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jlo-lp-YRj">
+                                                <rect key="frame" x="246" y="0.0" width="236" height="34"/>
+                                                <color key="backgroundColor" red="0.46202266219999999" green="0.83828371759999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                                <state key="normal" title="Food Discount"/>
+                                                <connections>
+                                                    <action selector="testAccess:" destination="C9D-jl-3yQ" eventType="touchUpInside" id="gI8-6w-9td"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" tag="8" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QZK-Fe-0Ew">
+                                                <rect key="frame" x="492" y="0.0" width="236" height="34"/>
+                                                <color key="backgroundColor" red="0.46202266219999999" green="0.83828371759999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                                <state key="normal" title="Merch Discount"/>
+                                                <connections>
+                                                    <action selector="testAccess:" destination="C9D-jl-3yQ" eventType="touchUpInside" id="6S7-xY-eiv"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
                                 </subviews>
                             </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RnD-U7-g26">
-                                <rect key="frame" x="20" y="650.5" width="728" height="200"/>
+                                <rect key="frame" x="20" y="702.5" width="728" height="191.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Test results" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p4v-qp-SId">
-                                        <rect key="frame" x="315.5" y="88" width="98.5" height="24"/>
+                                        <rect key="frame" x="315.5" y="84" width="98.5" height="24"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -554,15 +621,14 @@
                                 <color key="backgroundColor" red="0.83741801979999997" green="0.83743780850000005" blue="0.83742713930000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="p4v-qp-SId" firstAttribute="centerX" secondItem="RnD-U7-g26" secondAttribute="centerX" id="5pO-cv-hiM"/>
-                                    <constraint firstAttribute="height" constant="200" id="Apj-2a-YdY"/>
                                     <constraint firstItem="p4v-qp-SId" firstAttribute="centerY" secondItem="RnD-U7-g26" secondAttribute="centerY" id="Y0e-F5-f8d"/>
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rqd-vM-CiB">
-                                <rect key="frame" x="220.5" y="881" width="327" height="113"/>
+                                <rect key="frame" x="250" y="934" width="268" height="50"/>
                                 <color key="backgroundColor" red="0.46202266219999999" green="0.83828371759999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="Rqd-vM-CiB" secondAttribute="height" multiplier="136:47" id="mrn-bw-w4E"/>
+                                    <constraint firstAttribute="height" constant="50" id="jjA-Jk-ij9"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="Create New Pass">
@@ -572,28 +638,35 @@
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="RnD-U7-g26" firstAttribute="top" secondItem="QR4-aV-Cl6" secondAttribute="bottom" constant="30" id="6si-bW-8z1"/>
                             <constraint firstItem="8fF-QJ-Wyv" firstAttribute="top" secondItem="ZxM-yB-6r5" secondAttribute="top" id="79J-Vn-f97"/>
-                            <constraint firstItem="1wL-vE-ziL" firstAttribute="bottom" secondItem="Rqd-vM-CiB" secondAttribute="bottom" constant="30" id="Izh-tS-cJN"/>
+                            <constraint firstItem="Rqd-vM-CiB" firstAttribute="leading" secondItem="1wL-vE-ziL" secondAttribute="leading" constant="250" id="9Jd-kR-Gwg"/>
+                            <constraint firstItem="Rqd-vM-CiB" firstAttribute="top" secondItem="RnD-U7-g26" secondAttribute="bottom" constant="40" id="GFt-N6-RyP"/>
+                            <constraint firstItem="1wL-vE-ziL" firstAttribute="trailing" secondItem="Rqd-vM-CiB" secondAttribute="trailing" constant="250" id="KTt-1O-gjY"/>
                             <constraint firstItem="jN4-gz-xZD" firstAttribute="top" secondItem="8fF-QJ-Wyv" secondAttribute="bottom" constant="30" id="Qgl-U9-IWu"/>
-                            <constraint firstItem="RnD-U7-g26" firstAttribute="top" secondItem="7aM-CX-6x3" secondAttribute="bottom" constant="30" id="Ryg-5v-VBp"/>
                             <constraint firstItem="RnD-U7-g26" firstAttribute="leading" secondItem="1wL-vE-ziL" secondAttribute="leading" constant="20" id="auo-ja-UXY"/>
                             <constraint firstItem="QR4-aV-Cl6" firstAttribute="leading" secondItem="1wL-vE-ziL" secondAttribute="leading" constant="20" id="ay2-tt-wyh"/>
                             <constraint firstItem="jN4-gz-xZD" firstAttribute="leading" secondItem="1wL-vE-ziL" secondAttribute="leading" constant="20" id="bWh-rx-1Be"/>
                             <constraint firstItem="1wL-vE-ziL" firstAttribute="trailing" secondItem="8fF-QJ-Wyv" secondAttribute="trailing" id="beR-XL-kk8"/>
                             <constraint firstItem="8fF-QJ-Wyv" firstAttribute="leading" secondItem="1wL-vE-ziL" secondAttribute="leading" id="bnW-ay-A6T"/>
-                            <constraint firstItem="Rqd-vM-CiB" firstAttribute="top" secondItem="RnD-U7-g26" secondAttribute="bottom" constant="30" id="gYE-sS-p27"/>
+                            <constraint firstItem="1wL-vE-ziL" firstAttribute="bottom" secondItem="Rqd-vM-CiB" secondAttribute="bottom" constant="40" id="dpG-ZB-Y6Q"/>
                             <constraint firstItem="1wL-vE-ziL" firstAttribute="trailing" secondItem="jN4-gz-xZD" secondAttribute="trailing" constant="20" id="hO6-nz-kZR"/>
-                            <constraint firstItem="Rqd-vM-CiB" firstAttribute="centerX" secondItem="ZxM-yB-6r5" secondAttribute="centerX" id="rL4-57-8ut"/>
                             <constraint firstItem="1wL-vE-ziL" firstAttribute="trailing" secondItem="QR4-aV-Cl6" secondAttribute="trailing" constant="20" id="s3z-l2-hGn"/>
                             <constraint firstItem="1wL-vE-ziL" firstAttribute="trailing" secondItem="RnD-U7-g26" secondAttribute="trailing" constant="20" id="vNo-hm-PEF"/>
-                            <constraint firstItem="QR4-aV-Cl6" firstAttribute="top" secondItem="jN4-gz-xZD" secondAttribute="bottom" constant="30" id="vPX-s8-Qqb"/>
+                            <constraint firstItem="QR4-aV-Cl6" firstAttribute="top" secondItem="jN4-gz-xZD" secondAttribute="bottom" constant="20" id="vPX-s8-Qqb"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="1wL-vE-ziL"/>
                     </view>
+                    <connections>
+                        <outlet property="nameLabel" destination="Ogu-Tw-YuY" id="4Pj-10-EgO"/>
+                        <outlet property="passQualitiesLabel" destination="qUq-2N-sNf" id="b6i-G2-Bz1"/>
+                        <outlet property="passTypeLabel" destination="rVZ-k8-ywj" id="ZoL-Bc-7Jz"/>
+                        <outlet property="testResultsLabel" destination="p4v-qp-SId" id="ekZ-vk-aAc"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pv3-pK-tQR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="949" y="1128"/>
+            <point key="canvasLocation" x="948.4375" y="1127.9296875"/>
         </scene>
     </scenes>
     <resources>

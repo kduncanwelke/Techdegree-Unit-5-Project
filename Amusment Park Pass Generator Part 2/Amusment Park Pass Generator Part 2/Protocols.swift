@@ -17,8 +17,8 @@ protocol Entrant {
     var state: String?  { get set }
     var zipCode: Int?  { get set }
     
-    func checkRequirements(entrant: Entrant) throws
-    func isSubmissionErrorFree(entrant: Entrant) -> Bool
+    //func checkRequirements(entrant: Entrant) throws
+    //func isSubmissionErrorFree(entrant: Entrant) -> Bool
 }
 
 protocol PassEntrant {

@@ -85,8 +85,8 @@
 			children = (
 				2DCAFBA7218CF6F500441BE9 /* AppDelegate.swift */,
 				2DCAFBAB218CF6F500441BE9 /* Main.storyboard */,
-				2DC892CE21A0D0E70097735C /* PassViewController.swift */,
 				2DCAFBA9218CF6F500441BE9 /* ViewController.swift */,
+				2DC892CE21A0D0E70097735C /* PassViewController.swift */,
 				2D18C2A621A6262200B10A6D /* DummyData.swift */,
 				2D93CFEF2192366B00C996AC /* Errors.swift */,
 				2D93CFF121924BED00C996AC /* Protocols.swift */,

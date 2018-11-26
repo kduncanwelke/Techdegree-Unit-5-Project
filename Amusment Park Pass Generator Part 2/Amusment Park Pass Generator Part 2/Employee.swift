@@ -25,30 +25,54 @@ class Employee: Entrant {
     
     init(type: EmployeeType, firstName: String, lastName: String, birthday: String?, streetAddress: String?, city: String?, state: String?, zipCode: Int?, vendorCompany: VendorCompanies? = nil, visitDate: String? = nil, projectNumber: ContractEmployeeProjectNumbers? = nil) {
         
-        if let birthday = birthday, let streetAddress = streetAddress, let city = city, let state = state, let zipCode = zipCode, let vendorCompany = vendorCompany, let visitDate = visitDate, let projectNumber = projectNumber {
+        if let birthday = birthday {
             self.birthday = birthday
+        }
+        
+        if let streetAddress = streetAddress {
             self.streetAddress = streetAddress
+        }
+        
+        if let city = city {
             self.city = city
+        }
+        
+        if let state = state {
             self.state = state
+        }
+        
+        if let zipCode = zipCode {
             self.zipCode = zipCode
+        }
+        
+        if let vendorCompany = vendorCompany {
             self.vendorCompany = vendorCompany
+        }
+        
+        if let visitDate = visitDate {
             self.visitDate = visitDate
+        }
+        
+        if let projectNumber = projectNumber {
             self.projectNumber = projectNumber
         }
+        
         
         self.type = type
         self.firstName = firstName
         self.lastName = lastName
     }
+    
+    enum EmployeeType {
+        case foodService
+        case rideService
+        case maintenance
+        case manager
+        case contractEmployee
+        case vendor
+    }
+
 }
 
-enum EmployeeType {
-    case foodService
-    case rideService
-    case maintenance
-    case manager
-    case contractEmployee
-    case vendor
-}
 
 

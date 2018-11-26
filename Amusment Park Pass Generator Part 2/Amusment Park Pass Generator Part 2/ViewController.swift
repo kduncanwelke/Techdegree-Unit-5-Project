@@ -33,81 +33,14 @@ class ViewController: UIViewController {
     @IBOutlet weak var stateEntry: UITextField!
     @IBOutlet weak var zipcodeEntry: UITextField!
     
+    var pass: Pass?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
-        // Uncomment or comment out individual swipe actions to see results
-        /*let person1 = Guest(type: .Classic, firstName: "jg", lastName: "gkg", birthday: "", streetAddress: "", city: "", state: "", zipCode: nil)
-        // let person1 = Guest(type: .Classic, firstName: "", lastName: "Name", birthday: nil, streetAddress: )
-        let pass1 = person1.generatePass(entrant: person1)
-        if let pass1 = pass1 {
-            Kiosk.swipe(pass: pass1, forAccessTo: .Office)
-            // Kiosk.swipe(pass: pass1, forAccessTo: .Rides)
-            // Kiosk.swipe(pass: pass1, forAccessTo: .Amusements)
-        }*/
-        
-        /*
-        let person2 = Guest(type: .Vip, firstName: "Fancy", lastName: "Person", birthday: nil)
-        let pass2 = person2.generatePass(entrant: person2)
-        if let pass2 = pass2 {
-            Kiosk.swipe(pass: pass2, forAccessTo: .Rides)
-            // Kiosk.swipe(pass: pass2, forAccessTo: .FoodDiscount)
-            // Kiosk.swipe(pass: pass2, forAccessTo: .SkipLines)
-        }
-        */
-        
-        /*
-        let person3 = Guest(type: .FreeChild, firstName: "A", lastName: "Child", birthday: "12/11/2016")
-        let pass3 = person3.generatePass(entrant: person3)
-        if let pass3 = pass3 {
-           Kiosk.swipe(pass: pass3, forAccessTo: .Kitchen)
-           // Kiosk.swipe(pass: pass3, forAccessTo: .Amusements)
-           // Kiosk.swipe(pass: pass3, forAccessTo: .Rides)
-        }
-        */
-    
-        /*
-        let person4 = Employee(type: .FoodService, streetAddress: "Somewhere Street", city: "A City", state: "", zipCode: 47556, firstName: "A", lastName: "Person", birthday: nil)
-        let pass4 = person4.generatePass(entrant: person4)
-        if let pass4 = pass4 {
-            Kiosk.swipe(pass: pass4, forAccessTo: .Amusements)
-            // Kiosk.swipe(pass: pass4, forAccessTo: .MerchDiscount)
-            // Kiosk.swipe(pass: pass4, forAccessTo: .Kitchen)
-        }
-        */
-        
-        /*
-        let person5 = Employee(type: .RideService, streetAddress: "", city: "Somewhereville", state: "State", zipCode: 46974, firstName: "Person", lastName: "Person", birthday: nil)
-        let pass5 = person5.generatePass(entrant: person5)
-        if let pass5 = pass5 {
-            Kiosk.swipe(pass: pass5, forAccessTo: .Amusements)
-            // Kiosk.swipe(pass: pass5, forAccessTo: .RideControl)
-            // Kiosk.swipe(pass: pass5, forAccessTo: .Rides)
-        }
-        */
-        
-        /*
-        let person6 = Employee(type: .Maintenance, streetAddress: "A Road", city: "Some City", state: "A State", zipCode: 87756, firstName: "This", lastName: "Person", birthday: nil)
-        let pass6 = person6.generatePass(entrant: person6)
-        if let pass6 = pass6 {
-            // Kiosk.swipe(pass: pass6, forAccessTo: .Maintenance)
-         // The below tests thet pass cannot be swiped again
-            Kiosk.swipe(pass: pass6, forAccessTo: .MerchDiscount)
-            Kiosk.swipe(pass: pass6, forAccessTo: .MerchDiscount)
-        }
-        */
- 
-        /*
-        let person7 = Employee(type: .Manager, streetAddress: "This Street", city: "This City", state: "This State", zipCode: 38865, firstName: "The", lastName: "Manager", birthday: nil)
-        let pass7 = person7.generatePass(entrant: person7)
-        if let pass7 = pass7 {
-            Kiosk.swipe(pass: pass7, forAccessTo: .Office)
-           // Kiosk.swipe(pass: pass7, forAccessTo: .FoodDiscount)
-           // Kiosk.swipe(pass: pass7, forAccessTo: .RideControl)
-        }
-        */
+        let person = Employee(type: .contractEmployee, firstName: "ugdk", lastName: "sgk", birthday: "", streetAddress: "kfgdhj", city: "gkud", state: "sgkuh", zipCode: 5767, vendorCompany: nil, visitDate: "", projectNumber: nil)
+   
     }
     
     override func didReceiveMemoryWarning() {
@@ -356,7 +289,118 @@ class ViewController: UIViewController {
         }
     }
     
-   
+    @IBAction func generatePassButtonPressed(_ sender: UIButton) {
+        guard let firstName = firstNameEntry.text else { return }
+        guard let lastName = lastNameEntry.text else { return }
+        var dob = dobEntry.text
+        var address = addressEntry.text
+        var city = cityEntry.text
+        var state = stateEntry.text
+        var zipCode = Int(zipcodeEntry.text!)
+        var company = companyEntry.text
+        var visit = dateOfVisit.text
+        var number = Int(projectNumberEntry.text!)
+        
+        if guestButton.isSelected {
+            if button1.isSelected {
+                let type = Guest.GuestType.classic
+                let entrant = Guest(type: type, firstName: firstName, lastName: lastName, birthday: dob, streetAddress: address, city: city, state: state, zipCode: zipCode)
+                pass = Kiosk.generatePass(entrant: entrant)
+                
+                if pass != nil {
+                    performSegue(withIdentifier: "viewPass", sender: (Any).self)
+                }
+            } else if button2.isSelected {
+                let type = Guest.GuestType.freeChild
+                let entrant = Guest(type: type, firstName: firstName, lastName: lastName, birthday: dob, streetAddress: address, city: city, state: state, zipCode: zipCode)
+                pass = Kiosk.generatePass(entrant: entrant)
+                
+                if pass != nil {
+                    performSegue(withIdentifier: "viewPass", sender: (Any).self)
+                }
+            } else if button3.isSelected {
+                let type = Guest.GuestType.senior
+                let entrant = Guest(type: type, firstName: firstName, lastName: lastName, birthday: dob, streetAddress: address, city: city, state: state, zipCode: zipCode)
+                pass = Kiosk.generatePass(entrant: entrant)
+                
+                if pass != nil {
+                    performSegue(withIdentifier: "viewPass", sender: (Any).self)
+                }
+            }
+        } else if specialButton.isSelected {
+            if button1.isSelected {
+                let type = Guest.GuestType.vip
+                let entrant = Guest(type: type, firstName: firstName, lastName: lastName, birthday: dob, streetAddress: address, city: city, state: state, zipCode: zipCode)
+                
+                if pass != nil {
+                    performSegue(withIdentifier: "viewPass", sender: (Any).self)
+                }
+                pass = Kiosk.generatePass(entrant: entrant)
+            } else if button2.isSelected {
+                let type = Guest.GuestType.seasonPass
+                let entrant = Guest(type: type, firstName: firstName, lastName: lastName, birthday: dob, streetAddress: address, city: city, state: state, zipCode: zipCode)
+                pass = Kiosk.generatePass(entrant: entrant)
+                
+                if pass != nil {
+                    performSegue(withIdentifier: "viewPass", sender: (Any).self)
+                }
+            }
+            
+        } else if employeeButton.isSelected {
+            if button1.isSelected {
+                let type = Employee.EmployeeType.foodService
+                let entrant = Employee(type: type, firstName: firstName, lastName: lastName, birthday: dob, streetAddress: address, city: city, state: state, zipCode: zipCode)
+                pass = Kiosk.generatePass(entrant: entrant)
+                
+                if pass != nil {
+                    performSegue(withIdentifier: "viewPass", sender: (Any).self)
+                }
+            } else if button2.isSelected {
+                let type = Employee.EmployeeType.rideService
+                let entrant = Employee(type: type, firstName: firstName, lastName: lastName, birthday: dob, streetAddress: address, city: city, state: state, zipCode: zipCode)
+                pass = Kiosk.generatePass(entrant: entrant)
+                
+                if pass != nil {
+                    performSegue(withIdentifier: "viewPass", sender: (Any).self)
+                }
+            } else if button3.isSelected {
+                let type = Employee.EmployeeType.maintenance
+                let entrant = Employee(type: type, firstName: firstName, lastName: lastName, birthday: dob, streetAddress: address, city: city, state: state, zipCode: zipCode)
+                pass = Kiosk.generatePass(entrant: entrant)
+                
+                if pass != nil {
+                    performSegue(withIdentifier: "viewPass", sender: (Any).self)
+                }
+            } else if button4.isSelected {
+                let type = Employee.EmployeeType.manager
+                let entrant = Employee(type: type, firstName: firstName, lastName: lastName, birthday: dob, streetAddress: address, city: city, state: state, zipCode: zipCode)
+                pass = Kiosk.generatePass(entrant: entrant)
+                
+                if pass != nil {
+                    performSegue(withIdentifier: "viewPass", sender: (Any).self)
+                }
+            }
+        } else if servicesButton.isSelected {
+            if button1.isSelected {
+                let type = Employee.EmployeeType.contractEmployee
+                let entrant = Employee(type: type, firstName: firstName, lastName: lastName, birthday: dob, streetAddress: address, city: city, state: state, zipCode: zipCode, vendorCompany: VendorCompanies(rawValue: company!), visitDate: visit, projectNumber: ContractEmployeeProjectNumbers(rawValue: number!))
+                pass = Kiosk.generatePass(entrant: entrant)
+                
+                if pass != nil {
+                    performSegue(withIdentifier: "viewPass", sender: (Any).self)
+                }
+            } else if button2.isSelected {
+                let type = Employee.EmployeeType.vendor
+                let entrant = Employee(type: type, firstName: firstName, lastName: lastName, birthday: dob, streetAddress: address, city: city, state: state, zipCode: zipCode, vendorCompany: VendorCompanies(rawValue: company!), visitDate: visit, projectNumber: ContractEmployeeProjectNumbers(rawValue: number!))
+                pass = Kiosk.generatePass(entrant: entrant)
+                
+                if pass != nil {
+                    performSegue(withIdentifier: "viewPass", sender: (Any).self)
+                }
+            }
+        }
+    }
+    
     @IBAction func populateDateButtonPressed(_ sender: Any) {
         let dataList = DummyData.loadData()
         if guestButton.isSelected {
@@ -385,7 +429,7 @@ class ViewController: UIViewController {
                 let data = dataList[3]
                 firstNameEntry.text = data.firstName
                 lastNameEntry.text = data.lastName
-            } else if button2.isSelected {
+            } else if button2.isSelected { // season pass
                 let data = dataList[4]
                 firstNameEntry.text = data.firstName
                 lastNameEntry.text = data.lastName
@@ -447,14 +491,16 @@ class ViewController: UIViewController {
         } else if servicesButton.isSelected {
             if button1.isSelected { // contract employee
                 let data = dataList[9]
-                firstNameEntry.text = data.firstName
-                lastNameEntry.text = data.lastName
+                guard let contractor = data as? Employee else { return }
+                firstNameEntry.text = contractor.firstName
+                lastNameEntry.text = contractor.lastName
                 
-                if let address = data.streetAddress, let city = data.city, let state = data.state, let zip = data.zipCode {
+                if let address = contractor.streetAddress, let city = contractor.city, let state = contractor.state, let zip = contractor.zipCode, let projectNumber = contractor.projectNumber {
                     addressEntry.text = address
                     cityEntry.text = city
                     stateEntry.text = state
                     zipcodeEntry.text = String(describing: zip)
+                    projectNumberEntry.text = String(describing: projectNumber.rawValue)
                 }
             } else if button2.isSelected { // vendor
                 let data = dataList[10]
@@ -470,6 +516,14 @@ class ViewController: UIViewController {
                     print("\(company.rawValue)")
                 }
             }
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.destination is PassViewController {
+            let destinationViewController = segue.destination as? PassViewController
+            destinationViewController?.createdPass = pass
+            print("segue called")
         }
     }
     

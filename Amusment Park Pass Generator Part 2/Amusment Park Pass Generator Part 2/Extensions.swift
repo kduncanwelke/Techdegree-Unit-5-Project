@@ -10,12 +10,12 @@ import Foundation
 
 extension Entrant {
     // check that all required values are present
-    func checkRequirements(entrant: Entrant) throws {
+    func checkRequirements<T:Entrant>(entrant: T) throws {
         // check requirements for guest type
         switch entrant {
         case is Guest.Type:
             guard let guest = entrant as? Guest else { return }
-            
+        
             if guest.firstName == "" {
                 throw GuestRegistrationErrors.invalidFirstName
             } else if guest.lastName == "" {
@@ -103,7 +103,7 @@ extension Entrant {
     }
     
     // check that submission is error-free
-    func isSubmissionErrorFree(entrant: Entrant) -> Bool {
+    func isSubmissionErrorFree<T:Entrant>(entrant: T) -> Bool {
         // check guest type for errors
         switch entrant {
         case is Guest.Type:
