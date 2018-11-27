@@ -23,8 +23,10 @@ extension Entrant {
             
             switch guest.type {
             case .freeChild:
-                if guest.birthday == nil {
+                if guest.birthday == "" {
                     throw GuestRegistrationErrors.noFreeChildBirthday
+                } else if convertDate(birthdayDate: birthday) == nil {
+                    throw GuestRegistrationErrors.childBirthdayNotConvertibleToDate
                 } else if let age = checkAge(birthdayDate: birthday) {
                     if age > 5 {
                         // birthday was checked for nil so force unwrap is safe
@@ -32,8 +34,11 @@ extension Entrant {
                     }
                 }
             case .senior:
-                if guest.birthday == nil {
+                if guest.birthday == "" {
                     throw GuestRegistrationErrors.noSeniorBirthday
+                } else if convertDate(birthdayDate: birthday) == nil {
+                    throw GuestRegistrationErrors.seniorBirthdayNotConvertibleToDate
+                    // error if date cannot be converted
                 } else if let age = checkAge(birthdayDate: birthday) {
                     if age < 65 {
                         // birthday was checked for nil so force unwrap is safe
@@ -109,6 +114,7 @@ extension Entrant {
                 try guest.checkRequirements()
             } catch GuestRegistrationErrors.invalidFirstName {
                 print("Invalid first name")
+                
                 return false
             } catch GuestRegistrationErrors.invalidLastName {
                 print("Invalid last name")
@@ -116,11 +122,20 @@ extension Entrant {
             } catch GuestRegistrationErrors.noFreeChildBirthday {
                 print("No birthday supplied to verify free child")
                 return false
-            } catch GuestRegistrationErrors.invalidFreeChildBirthday {
+            } catch GuestRegistrationErrors.childBirthdayNotConvertibleToDate {
+                print("Cannot convert input to date")
+                return false
+            }catch GuestRegistrationErrors.invalidFreeChildBirthday {
                 print("Birthday does not confirm child under 5 years of age")
                 return false
             } catch GuestRegistrationErrors.noSeniorBirthday {
                 print("No birthday provided to confirm senior")
+                return false
+            } catch GuestRegistrationErrors.seniorBirthdayNotConvertibleToDate {
+                print("Cannot convert input to date")
+                return false
+            } catch GuestRegistrationErrors.invalidSeniorBirthday {
+                print("Birthday does not confirm senior over 65")
                 return false
             } catch GuestRegistrationErrors.invalidSeasonPassAddress {
                 print("No address supplied for season pass guest")
@@ -191,19 +206,7 @@ extension Entrant {
     func checkAge(birthdayDate: String?) -> Int? {
         let date = Date()
         
-        guard let birthday = birthdayDate else {
-            print("No birthday supplied for age check")
-            return nil
-        }
-        
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd/MM/yyyy"
-        let dateFromString = dateFormatter.date(from: birthday)
-        
-        guard let convertedDate = dateFromString else {
-            print("Date not convertable")
-            return nil
-        }
+        guard let convertedDate = convertDate(birthdayDate: birthdayDate) else { return nil }
         
         // perform math with produced date compared to current date
         guard let difference = Calendar.current.dateComponents([.day], from: convertedDate, to: date).day else {
@@ -216,6 +219,25 @@ extension Entrant {
         return age
         
     }
+    
+    func convertDate(birthdayDate: String?) -> Date? {
+        if let birthday = birthdayDate {
+            
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "dd/MM/yyyy"
+            let dateFromString = dateFormatter.date(from: birthday)
+            
+            guard let convertedDate = dateFromString else {
+                print("Date not convertable")
+                return nil
+            }
+            return convertedDate
+        } else {
+            print("No birthday supplied for age check")
+            return nil
+        }
+    }
+    
 }
 
 

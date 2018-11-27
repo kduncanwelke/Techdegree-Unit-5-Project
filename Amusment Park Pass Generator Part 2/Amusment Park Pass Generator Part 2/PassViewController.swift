@@ -18,9 +18,17 @@ class PassViewController: UIViewController {
     
     var createdPass: Pass?
     
+    // sounds
+    let accessGranted = Sound(number: 0, resourceName: "AccessGranted", type: "wav")
+    let accessDenied = Sound(number: 1, resourceName: "AccessDenied", type: "wav")
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // load sounds
+        Sound.loadSound(number: &accessGranted.number, resourceName: accessGranted.resourceName, type: accessGranted.type)
+        Sound.loadSound(number: &accessDenied.number, resourceName: accessDenied.resourceName, type: accessDenied.type)
+    
         updateUI()
 
         // Do any additional setup after loading the view.
@@ -100,62 +108,75 @@ class PassViewController: UIViewController {
         passTypeLabel.text = "\(passName)"
     }
     
+    func correctResult() {
+        Sound.playSound(number: accessGranted.number)
+        testResultsLabel.text = "Access granted"
+    }
+    
+    func incorrectResult() {
+        Sound.playSound(number: accessDenied.number)
+        testResultsLabel.text = "Access denied"
+    }
     
     @IBAction func testAccess(_ sender: UIButton) {
         guard let pass = createdPass else { return }
         switch sender.tag {
         case 0: // rides
             if pass.rideAccess {
-                testResultsLabel.text = "Access granted"
+                correctResult()
             } else {
-                testResultsLabel.text = "Access denied"
+                incorrectResult()
             }
         case 1: // amusements
             if pass.amusementAccess {
-                testResultsLabel.text = "Access granted"
+                 correctResult()
             } else {
-                testResultsLabel.text = "Access denied"
+               incorrectResult()
             }
         case 2: // skip lines
             if pass.skipRideLines {
-                testResultsLabel.text = "Access granted"
+                 correctResult()
             } else {
-                testResultsLabel.text = "Access denied"
+                incorrectResult()
             }
         case 3: // kitchens
             if pass.kitchenAccess {
-                testResultsLabel.text = "Access granted"
+                 correctResult()
             } else {
                 testResultsLabel.text = "Access denied"
             }
         case 4: // ride control
             if pass.rideControlAccess {
-                testResultsLabel.text = "Access granted"
+                 correctResult()
             } else {
-                testResultsLabel.text = "Access denied"
+                incorrectResult()
             }
         case 5: // maintenance
             if pass.maintenanceAccess {
-                testResultsLabel.text = "Access granted"
+                 correctResult()
             } else {
                 testResultsLabel.text = "Access denied"
             }
         case 6: // office
             if pass.officeAccess {
-                testResultsLabel.text = "Access granted"
+                 correctResult()
             } else {
-                testResultsLabel.text = "Access denied"
+                incorrectResult()
             }
         case 7: // food discount
             if pass.foodDiscount != 0 {
+                Sound.playSound(number: accessGranted.number)
                 testResultsLabel.text = "Access granted, \(pass.foodDiscount)% discount"
             } else {
+                Sound.playSound(number: accessDenied.number)
                 testResultsLabel.text = "No discount available"
             }
         case 8: // merch discount
             if pass.merchandiseDiscount != 0 {
+                Sound.playSound(number: accessGranted.number)
                 testResultsLabel.text = "Access granted, \(pass.merchandiseDiscount)% discount"
             } else {
+                Sound.playSound(number: accessDenied.number)
                 testResultsLabel.text = "No discount available"
             }
         default:

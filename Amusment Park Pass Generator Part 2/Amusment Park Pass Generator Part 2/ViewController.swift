@@ -34,7 +34,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var zipcodeEntry: UITextField!
     
     var pass: Pass?
-    
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,7 +45,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         addressEntry.delegate = self
         cityEntry.delegate = self
         stateEntry.delegate = self
-        
+    
         zipcodeEntry.delegate = self
         projectNumberEntry.delegate = self
         
@@ -60,7 +60,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
         cityEntry.isEnabled = false
         stateEntry.isEnabled = false
         zipcodeEntry.isEnabled = false
-   
     }
     
     override func didReceiveMemoryWarning() {
@@ -467,6 +466,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 let data = dataList[1]
                 firstNameEntry.text = data.firstName
                 lastNameEntry.text = data.lastName
+                
                 if let dob = data.birthday {
                     dobEntry.text = dob
                 }
@@ -567,8 +567,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
                     companyEntry.text = company.rawValue
                     dobEntry.text = dob
                     dateOfVisit.text = visit
-                    
-                    print("\(company.rawValue)")
                 }
             }
         }

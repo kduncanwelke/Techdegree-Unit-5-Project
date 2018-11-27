@@ -21,13 +21,26 @@ class Guest: Entrant {
     
     init(type: GuestType, firstName: String, lastName: String, birthday: String?, streetAddress: String?, city: String?, state: String?, zipCode: Int?) {
         
-        if let birthday = birthday, let streetAddress = streetAddress, let city = city, let state = state, let zipCode = zipCode {
+        if let birthday = birthday {
             self.birthday = birthday
+        }
+        
+        if let streetAddress = streetAddress {
             self.streetAddress = streetAddress
+        }
+        
+        if let city = city {
             self.city = city
+        }
+        
+        if let state = state {
             self.state = state
+        }
+        
+        if let zipCode = zipCode {
             self.zipCode = zipCode
         }
+        
             
         self.type = type
         self.firstName = firstName

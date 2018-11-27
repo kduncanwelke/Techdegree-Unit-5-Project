@@ -19,6 +19,7 @@ enum GuestRegistrationErrors: Error {
     case invalidFirstName
     case invalidLastName
     
+    case childBirthdayNotConvertibleToDate
     case noFreeChildBirthday
     case invalidFreeChildBirthday
     
@@ -27,6 +28,7 @@ enum GuestRegistrationErrors: Error {
     case invalidSeasonPassState
     case invalidSeasonPassZipCode
     
+    case seniorBirthdayNotConvertibleToDate
     case noSeniorBirthday
     case invalidSeniorBirthday
 }
