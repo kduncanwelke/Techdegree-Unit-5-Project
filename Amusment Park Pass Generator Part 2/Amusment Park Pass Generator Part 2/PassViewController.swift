@@ -122,62 +122,219 @@ class PassViewController: UIViewController {
         guard let pass = createdPass else { return }
         switch sender.tag {
         case 0: // rides
-            if pass.rideAccess {
-                correctResult()
-            } else {
-                incorrectResult()
+            do {
+                switch try Kiosk.swipe(pass: pass, forAccessTo: .rides) {
+                case (true, true):
+                    correctResult()
+                    if let name = nameLabel.text {
+                    showAlert(title: "Happy Birthday!", message: "Today is the day! Happy birthday \(name)!")
+                    }
+                case (true, false):
+                    correctResult()
+                case (false, true):
+                    incorrectResult()
+                    if let name = nameLabel.text {
+                        showAlert(title: "Happy Birthday!", message: "Today is the day! Happy birthday \(name)!")
+                    }
+                case (false, false):
+                    incorrectResult()
+                }
+            } catch PassSwipeErrors.passSwipedTooSoon {
+                showAlert(title: "Unable to process pass", message: PassSwipeErrors.passSwipedTooSoon.localizedDescription)
+            } catch let error {
+                print("\(error)")
             }
         case 1: // amusements
-            if pass.amusementAccess {
-                 correctResult()
-            } else {
-               incorrectResult()
+            do {
+                switch try Kiosk.swipe(pass: pass, forAccessTo: .amusements) {
+                case (true, true):
+                    correctResult()
+                    if let name = nameLabel.text {
+                        showAlert(title: "Happy Birthday!", message: "Today is the day! Happy birthday \(name)!")
+                    }
+                case (true, false):
+                    correctResult()
+                case (false, true):
+                    incorrectResult()
+                    if let name = nameLabel.text {
+                        showAlert(title: "Happy Birthday!", message: "Today is the day! Happy birthday \(name)!")
+                    }
+                case (false, false):
+                    incorrectResult()
+                }
+            } catch PassSwipeErrors.passSwipedTooSoon {
+                showAlert(title: "Unable to process pass", message: PassSwipeErrors.passSwipedTooSoon.localizedDescription)
+            } catch let error {
+                print("\(error)")
             }
         case 2: // skip lines
-            if pass.skipRideLines {
-                 correctResult()
-            } else {
-                incorrectResult()
+            do {
+                switch try Kiosk.swipe(pass: pass, forAccessTo: .skipLines) {
+                case (true, true):
+                    correctResult()
+                    if let name = nameLabel.text {
+                        showAlert(title: "Happy Birthday!", message: "Today is the day! Happy birthday \(name)!")
+                    }
+                case (true, false):
+                    correctResult()
+                case (false, true):
+                    incorrectResult()
+                    if let name = nameLabel.text {
+                        showAlert(title: "Happy Birthday!", message: "Today is the day! Happy birthday \(name)!")
+                    }
+                case (false, false):
+                    incorrectResult()
+                }
+            } catch PassSwipeErrors.passSwipedTooSoon {
+                showAlert(title: "Unable to process pass", message: PassSwipeErrors.passSwipedTooSoon.localizedDescription)
+            } catch let error {
+                print("\(error)")
             }
         case 3: // kitchens
-            if pass.kitchenAccess {
-                 correctResult()
-            } else {
-                testResultsLabel.text = "Access denied"
+            do {
+                switch try Kiosk.swipe(pass: pass, forAccessTo: .kitchen) {
+                case (true, true):
+                    correctResult()
+                    if let name = nameLabel.text {
+                        showAlert(title: "Happy Birthday!", message: "Today is the day! Happy birthday \(name)!")
+                    }
+                case (true, false):
+                    correctResult()
+                case (false, true):
+                    incorrectResult()
+                    if let name = nameLabel.text {
+                        showAlert(title: "Happy Birthday!", message: "Today is the day! Happy birthday \(name)!")
+                    }
+                case (false, false):
+                    incorrectResult()
+                }
+            } catch PassSwipeErrors.passSwipedTooSoon {
+                showAlert(title: "Unable to process pass", message: PassSwipeErrors.passSwipedTooSoon.localizedDescription)
+            } catch let error {
+                print("\(error)")
             }
         case 4: // ride control
-            if pass.rideControlAccess {
-                 correctResult()
-            } else {
-                incorrectResult()
+            do {
+                switch try Kiosk.swipe(pass: pass, forAccessTo: .rideControl) {
+                case (true, true):
+                    correctResult()
+                    if let name = nameLabel.text {
+                        showAlert(title: "Happy Birthday!", message: "Today is the day! Happy birthday \(name)!")
+                    }
+                case (true, false):
+                    correctResult()
+                case (false, true):
+                    incorrectResult()
+                    if let name = nameLabel.text {
+                        showAlert(title: "Happy Birthday!", message: "Today is the day! Happy birthday \(name)!")
+                    }
+                case (false, false):
+                    incorrectResult()
+                }
+            } catch PassSwipeErrors.passSwipedTooSoon {
+                showAlert(title: "Unable to process pass", message: PassSwipeErrors.passSwipedTooSoon.localizedDescription)
+            } catch let error {
+                print("\(error)")
             }
         case 5: // maintenance
-            if pass.maintenanceAccess {
-                 correctResult()
-            } else {
-                testResultsLabel.text = "Access denied"
+            do {
+                switch try Kiosk.swipe(pass: pass, forAccessTo: .maintenance) {
+                case (true, true):
+                    correctResult()
+                    if let name = nameLabel.text {
+                        showAlert(title: "Happy Birthday!", message: "Today is the day! Happy birthday \(name)!")
+                    }
+                case (true, false):
+                    correctResult()
+                case (false, true):
+                    incorrectResult()
+                    if let name = nameLabel.text {
+                        showAlert(title: "Happy Birthday!", message: "Today is the day! Happy birthday \(name)!")
+                    }
+                case (false, false):
+                    incorrectResult()
+                }
+            } catch PassSwipeErrors.passSwipedTooSoon {
+                showAlert(title: "Unable to process pass", message: PassSwipeErrors.passSwipedTooSoon.localizedDescription)
+            } catch let error {
+                print("\(error)")
             }
         case 6: // office
-            if pass.officeAccess {
-                 correctResult()
-            } else {
-                incorrectResult()
+            do {
+                switch try Kiosk.swipe(pass: pass, forAccessTo: .office) {
+                case (true, true):
+                    correctResult()
+                    if let name = nameLabel.text {
+                        showAlert(title: "Happy Birthday!", message: "Today is the day! Happy birthday \(name)!")
+                    }
+                case (true, false):
+                    correctResult()
+                case (false, true):
+                    incorrectResult()
+                    if let name = nameLabel.text {
+                        showAlert(title: "Happy Birthday!", message: "Today is the day! Happy birthday \(name)!")
+                    }
+                case (false, false):
+                    incorrectResult()
+                }
+            } catch PassSwipeErrors.passSwipedTooSoon {
+                showAlert(title: "Unable to process pass", message: PassSwipeErrors.passSwipedTooSoon.localizedDescription)
+            } catch let error {
+                print("\(error)")
             }
         case 7: // food discount
-            if pass.foodDiscount != 0 {
-                Sound.playSound(number: accessGranted.number)
-                testResultsLabel.text = "Access granted, \(pass.foodDiscount)% discount"
-            } else {
-                Sound.playSound(number: accessDenied.number)
-                testResultsLabel.text = "No discount available"
+            do {
+                switch try Kiosk.swipe(pass: pass, forAccessTo: .foodDiscount) {
+                case (true, true):
+                    Sound.playSound(number: accessGranted.number)
+                    testResultsLabel.text = "Access granted, \(pass.foodDiscount)% discount"
+                    if let name = nameLabel.text {
+                        showAlert(title: "Happy Birthday!", message: "Today is the day! Happy birthday \(name)!")
+                    }
+                case (true, false):
+                    Sound.playSound(number: accessGranted.number)
+                    testResultsLabel.text = "Access granted, \(pass.foodDiscount)% discount"
+                case (false, true):
+                    Sound.playSound(number: accessDenied.number)
+                    testResultsLabel.text = "No discount available"
+                    if let name = nameLabel.text {
+                        showAlert(title: "Happy Birthday!", message: "Today is the day! Happy birthday \(name)!")
+                    }
+                case (false, false):
+                    Sound.playSound(number: accessDenied.number)
+                    testResultsLabel.text = "No discount available"
+                }
+            } catch PassSwipeErrors.passSwipedTooSoon {
+                showAlert(title: "Unable to process pass", message: PassSwipeErrors.passSwipedTooSoon.localizedDescription)
+            } catch let error {
+                print("\(error)")
             }
         case 8: // merch discount
-            if pass.merchandiseDiscount != 0 {
-                Sound.playSound(number: accessGranted.number)
-                testResultsLabel.text = "Access granted, \(pass.merchandiseDiscount)% discount"
-            } else {
-                Sound.playSound(number: accessDenied.number)
-                testResultsLabel.text = "No discount available"
+            do {
+                switch try Kiosk.swipe(pass: pass, forAccessTo: .merchDiscount) {
+                case (true, true):
+                    Sound.playSound(number: accessGranted.number)
+                    testResultsLabel.text = "Access granted, \(pass.merchandiseDiscount)% discount"
+                    if let name = nameLabel.text {
+                        showAlert(title: "Happy Birthday!", message: "Today is the day! Happy birthday \(name)!")
+                    }
+                case (true, false):
+                    Sound.playSound(number: accessGranted.number)
+                    testResultsLabel.text = "Access granted, \(pass.merchandiseDiscount)% discount"
+                case (false, true):
+                    Sound.playSound(number: accessDenied.number)
+                    testResultsLabel.text = "No discount available"
+                    if let name = nameLabel.text {
+                        showAlert(title: "Happy Birthday!", message: "Today is the day! Happy birthday \(name)!")
+                    }
+                case (false, false):
+                    Sound.playSound(number: accessDenied.number)
+                    testResultsLabel.text = "No discount available"
+                }
+            } catch PassSwipeErrors.passSwipedTooSoon {
+                showAlert(title: "Unable to process pass", message: PassSwipeErrors.passSwipedTooSoon.localizedDescription)
+            } catch let error {
+                print("\(error)")
             }
         default:
             break

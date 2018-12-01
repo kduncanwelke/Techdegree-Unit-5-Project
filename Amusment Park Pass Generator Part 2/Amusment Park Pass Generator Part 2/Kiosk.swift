@@ -10,8 +10,8 @@ import Foundation
 
 struct Kiosk {
     
-    static func generatePass<T:Entrant>(entrant: T) -> Pass? {
-        let success = entrant.isSubmissionErrorFree()
+    static func generatePass(entrant: Entrant) throws -> Pass? {
+        let success = try entrant.checkRequirements()
         switch entrant {
         case is Guest:
             guard let guest = entrant as? Guest else { return nil }
@@ -75,90 +75,76 @@ struct Kiosk {
 
     
     // swipe function, checks for birthday and access to given access point
-    static func swipe(pass: Pass, forAccessTo: AccessPoint) -> Bool {
+    static func swipe(pass: Pass, forAccessTo: AccessPoint) throws -> (Bool, Bool) {
+        
         guard TimerHandling.seconds == 0 else {
             print("Your pass cannot be swiped again immediately - please pause and try again.")
-            return false
+            throw PassSwipeErrors.passSwipedTooSoon
+            //return (false, false)
         }
         
         // run timer to ensure pass is not swiped within 5 seconds
         TimerHandling.timer.fire()
         
-       // checkForBirthday(personWithPass: pass)
+        let isBirthday = checkForBirthday(personWithPass: pass)
+        
         switch forAccessTo {
         case .rides:
             if pass.rideAccess == true {
-                print("Able to access rides")
-                return true
+                return (true, isBirthday)
             } else {
-                print("Access to rides denied")
-                return false
+                return (false, isBirthday)
             }
         case .amusements:
             if pass.amusementAccess == true {
-                print("Able to access amusements")
-                return true
+                return (true, isBirthday)
             } else {
-                print("Access to amusements denied")
-                return false
+                return (false, isBirthday)
             }
         case .skipLines:
             if pass.skipRideLines == true {
-                print("Able to skip ride lines")
-                return true
+                return (true, isBirthday)
             } else {
-                print("Access to skipping ride lines denied")
-                return false
+                return (false, isBirthday)
             }
         case .kitchen:
             if pass.kitchenAccess == true {
-                print("Able to access kitchen")
-                return true
+                return (true, isBirthday)
             } else {
-                print("Access to kitchen denied")
-                return false
+                return (false, isBirthday)
             }
         case .rideControl:
             if pass.rideControlAccess == true {
-                print("Able to access ride control")
-                return true
+                return (true, isBirthday)
             } else {
-                print("Access to ride control denied")
-                return false
+                return (false, isBirthday)
             }
         case .maintenance:
             if pass.maintenanceAccess == true {
-                print("Able to access maintenance")
-                return true
+                return (true, isBirthday)
             } else {
-                print("Access to maintenance denied")
-                return false
+                return (false, isBirthday)
             }
         case .office:
             if pass.officeAccess == true {
-                print("Able to access office")
-                return true
+                return (true, isBirthday)
             } else {
-                print("Access to office denied")
-                return false
+                return (false, isBirthday)
             }
         case .foodDiscount:
             if pass.foodDiscount != 0 {
-                print("Discount of \(pass.foodDiscount)")
-                return true
+                return (true, isBirthday)
             } else {
-                print("No discount available")
-                return false
+                return (false, isBirthday)
             }
         case .merchDiscount:
             if pass.merchandiseDiscount != 0 {
-                print("Discount of \(pass.merchandiseDiscount)")
-                return true
+                return (true, isBirthday)
             } else {
-                print("No discount available")
-                return false
+                return (false, isBirthday)
             }
         }
+        
     }
     
     enum AccessPoint {
@@ -175,33 +161,138 @@ struct Kiosk {
     
     
     // run during swipe to check if it is visitor's birthday
-    static func checkForBirthday<T>(personWithPass: T) where T:Entrant {
+    static func checkForBirthday(personWithPass: Pass) -> Bool {
+        
+        switch personWithPass {
+        case is ClassicPass:
+            guard let entry = personWithPass as? ClassicPass else { return false }
+            guard let birthday = entry.entrant.birthday else {
+                print("No birthday supplied, cannot check for birthday")
+                return false
+            }
+            
+            guard let result = doBirthdayCalculations(birthday: birthday) else { return false }
+            return result
+        case is VipPass:
+            guard let entry = personWithPass as? VipPass else { return false }
+            guard let birthday = entry.entrant.birthday else {
+                print("No birthday supplied, cannot check for birthday")
+                return false
+            }
+            
+            guard let result = doBirthdayCalculations(birthday: birthday) else { return false }
+            return result
+        case is FreeChildPass:
+            guard let entry = personWithPass as? FreeChildPass else { return false }
+            guard let birthday = entry.entrant.birthday else {
+                print("No birthday supplied, cannot check for birthday")
+                return false
+            }
+            
+            guard let result = doBirthdayCalculations(birthday: birthday) else { return false }
+            return result
+        case is SeniorPass:
+            guard let entry = personWithPass as? SeniorPass else { return false }
+            guard let birthday = entry.entrant.birthday else {
+                print("No birthday supplied, cannot check for birthday")
+                return false
+            }
+            
+            guard let result = doBirthdayCalculations(birthday: birthday) else { return false }
+            return result
+        case is SeasonPass:
+            guard let entry = personWithPass as? SeasonPass else { return false }
+            guard let birthday = entry.entrant.birthday else {
+                print("No birthday supplied, cannot check for birthday")
+                return false
+            }
+            
+            guard let result = doBirthdayCalculations(birthday: birthday) else { return false }
+            return result
+        case is FoodServicePass:
+            guard let entry = personWithPass as? FoodServicePass else { return false }
+            guard let birthday = entry.entrant.birthday else {
+                print("No birthday supplied, cannot check for birthday")
+                return false
+            }
+            
+            guard let result = doBirthdayCalculations(birthday: birthday) else { return false }
+            return result
+        case is RideServicesPass:
+            guard let entry = personWithPass as? RideServicesPass else { return false }
+            guard let birthday = entry.entrant.birthday else {
+                print("No birthday supplied, cannot check for birthday")
+                return false
+            }
+            
+            guard let result = doBirthdayCalculations(birthday: birthday) else { return false }
+            return result
+        case is MaintenancePass:
+            guard let entry = personWithPass as? MaintenancePass else { return false }
+            guard let birthday = entry.entrant.birthday else {
+                print("No birthday supplied, cannot check for birthday")
+                return false
+            }
+            
+            guard let result = doBirthdayCalculations(birthday: birthday) else { return false }
+            return result
+        case is ManagerPass:
+            guard let entry = personWithPass as? ManagerPass else { return false }
+            guard let birthday = entry.entrant.birthday else {
+                print("No birthday supplied, cannot check for birthday")
+                return false
+            }
+            
+            guard let result = doBirthdayCalculations(birthday: birthday) else { return false }
+            return result
+        case is VendorPass:
+            guard let entry = personWithPass as? VendorPass else { return false }
+            guard let birthday = entry.entrant.birthday else {
+                print("No birthday supplied, cannot check for birthday")
+                return false
+            }
+            
+            guard let result = doBirthdayCalculations(birthday: birthday) else { return false }
+            return result
+        case is ContractPass:
+            guard let entry = personWithPass as? ContractPass else { return false }
+            guard let birthday = entry.entrant.birthday else {
+                print("No birthday supplied, cannot check for birthday")
+                return false
+            }
+            
+            guard let result = doBirthdayCalculations(birthday: birthday) else { return false }
+            return result
+        default:
+            break
+        }
+        return false // return false if no results
+    }
+    
+    static func doBirthdayCalculations(birthday: String) -> Bool? {
         let date = Date()
         let calendar = Calendar.current
         let currentMonth = calendar.component(.month, from: date)
         let currentDay = calendar.component(.day, from: date)
-        
-        guard let birthday = personWithPass.birthday else {
-            print("No birthday supplied, cannot check for birthday")
-            return
-        }
-        
+
+       
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd/MM/yyyy"
         let dateFromString = dateFormatter.date(from: birthday)
         
         guard let convertedDate = dateFromString else {
-            print("Date not convertable")
-            return
+            print("Date not convertable for birthday check")
+            return nil
         }
         
         let entrantBirthdayMonth = calendar.component(.month, from: convertedDate)
         let entrantBirthdayDay = calendar.component(.day, from: convertedDate)
         
         if entrantBirthdayMonth == currentMonth && entrantBirthdayDay == currentDay {
-            print("Happy birthday \(personWithPass.firstName) \(personWithPass.lastName)!")
+            return true
+        } else {
+            return false
         }
-        
     }
 
 }

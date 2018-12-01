@@ -34,10 +34,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var zipcodeEntry: UITextField!
     
     var pass: Pass?
-
     
     override func viewDidLoad() {
-        super.viewDidLoad()
+        super.viewDidLoad()        
         // Do any additional setup after loading the view, typically from a nib.
         firstNameEntry.delegate = self
         lastNameEntry.delegate = self
@@ -350,120 +349,126 @@ class ViewController: UIViewController, UITextFieldDelegate {
         let address = addressEntry.text
         let city = cityEntry.text
         let state = stateEntry.text
-        let zipCode = Int(zipcodeEntry.text!)
-        let company = companyEntry.text
+        let zipCode = zipcodeEntry.text
+        guard let numberZipCode = Int(zipCode!) else { return }
+        
         let visit = dateOfVisit.text
-        let number = Int(projectNumberEntry.text!)
+        
+        let vendor = companyEntry.text
+        guard let vendorCompany = vendor else { return }
+        
+        let number = projectNumberEntry.text
+        guard let contractNumber = Int(number!) else { return }
+    
+        var entrant: Entrant?
         
         if guestButton.isSelected {
             if button1.isSelected {
                 let type = Guest.GuestType.classic
-                let entrant = Guest(type: type, firstName: firstName, lastName: lastName, birthday: dob, streetAddress: address, city: city, state: state, zipCode: zipCode)
-                pass = Kiosk.generatePass(entrant: entrant)
-                
-                if pass != nil {
-                    performSegue(withIdentifier: "viewPass", sender: (Any).self)
-                }
+                entrant = Guest(type: type, firstName: firstName, lastName: lastName, birthday: dob, streetAddress: address, city: city, state: state, zipCode: numberZipCode)
             } else if button2.isSelected {
                 let type = Guest.GuestType.freeChild
-                let entrant = Guest(type: type, firstName: firstName, lastName: lastName, birthday: dob, streetAddress: address, city: city, state: state, zipCode: zipCode)
-                pass = Kiosk.generatePass(entrant: entrant)
-                
-                if pass != nil {
-                    performSegue(withIdentifier: "viewPass", sender: (Any).self)
-                }
+                entrant = Guest(type: type, firstName: firstName, lastName: lastName, birthday: dob, streetAddress: address, city: city, state: state, zipCode: numberZipCode)
             } else if button3.isSelected {
                 let type = Guest.GuestType.senior
-                let entrant = Guest(type: type, firstName: firstName, lastName: lastName, birthday: dob, streetAddress: address, city: city, state: state, zipCode: zipCode)
-                pass = Kiosk.generatePass(entrant: entrant)
-                
-                if pass != nil {
-                    performSegue(withIdentifier: "viewPass", sender: (Any).self)
-                }
+                entrant = Guest(type: type, firstName: firstName, lastName: lastName, birthday: dob, streetAddress: address, city: city, state: state, zipCode: numberZipCode)
             }
         } else if specialButton.isSelected {
             if button1.isSelected {
                 let type = Guest.GuestType.vip
-                let entrant = Guest(type: type, firstName: firstName, lastName: lastName, birthday: dob, streetAddress: address, city: city, state: state, zipCode: zipCode)
-                
-                if pass != nil {
-                    performSegue(withIdentifier: "viewPass", sender: (Any).self)
-                }
-                pass = Kiosk.generatePass(entrant: entrant)
+                entrant = Guest(type: type, firstName: firstName, lastName: lastName, birthday: dob, streetAddress: address, city: city, state: state, zipCode: numberZipCode)
             } else if button2.isSelected {
                 let type = Guest.GuestType.seasonPass
-                let entrant = Guest(type: type, firstName: firstName, lastName: lastName, birthday: dob, streetAddress: address, city: city, state: state, zipCode: zipCode)
-                pass = Kiosk.generatePass(entrant: entrant)
-                
-                if pass != nil {
-                    performSegue(withIdentifier: "viewPass", sender: (Any).self)
-                }
+                entrant = Guest(type: type, firstName: firstName, lastName: lastName, birthday: dob, streetAddress: address, city: city, state: state, zipCode: numberZipCode)
             }
-            
         } else if employeeButton.isSelected {
             if button1.isSelected {
                 let type = Employee.EmployeeType.foodService
-                let entrant = Employee(type: type, firstName: firstName, lastName: lastName, birthday: dob, streetAddress: address, city: city, state: state, zipCode: zipCode)
-                pass = Kiosk.generatePass(entrant: entrant)
-                
-                if pass != nil {
-                    performSegue(withIdentifier: "viewPass", sender: (Any).self)
-                }
+                entrant = Employee(type: type, firstName: firstName, lastName: lastName, birthday: dob, streetAddress: address, city: city, state: state, zipCode: numberZipCode)
             } else if button2.isSelected {
                 let type = Employee.EmployeeType.rideService
-                let entrant = Employee(type: type, firstName: firstName, lastName: lastName, birthday: dob, streetAddress: address, city: city, state: state, zipCode: zipCode)
-                pass = Kiosk.generatePass(entrant: entrant)
-                
-                if pass != nil {
-                    performSegue(withIdentifier: "viewPass", sender: (Any).self)
-                }
+                entrant = Employee(type: type, firstName: firstName, lastName: lastName, birthday: dob, streetAddress: address, city: city, state: state, zipCode: numberZipCode)
             } else if button3.isSelected {
                 let type = Employee.EmployeeType.maintenance
-                let entrant = Employee(type: type, firstName: firstName, lastName: lastName, birthday: dob, streetAddress: address, city: city, state: state, zipCode: zipCode)
-                pass = Kiosk.generatePass(entrant: entrant)
-                
-                if pass != nil {
-                    performSegue(withIdentifier: "viewPass", sender: (Any).self)
-                }
+                entrant = Employee(type: type, firstName: firstName, lastName: lastName, birthday: dob, streetAddress: address, city: city, state: state, zipCode: numberZipCode)
             } else if button4.isSelected {
                 let type = Employee.EmployeeType.manager
-                let entrant = Employee(type: type, firstName: firstName, lastName: lastName, birthday: dob, streetAddress: address, city: city, state: state, zipCode: zipCode)
-                pass = Kiosk.generatePass(entrant: entrant)
-                
-                if pass != nil {
-                    performSegue(withIdentifier: "viewPass", sender: (Any).self)
-                }
+                entrant = Employee(type: type, firstName: firstName, lastName: lastName, birthday: dob, streetAddress: address, city: city, state: state, zipCode: numberZipCode)
             }
         } else if servicesButton.isSelected {
             if button1.isSelected {
                 let type = Employee.EmployeeType.contractEmployee
-                let entrant = Employee(type: type, firstName: firstName, lastName: lastName, birthday: dob, streetAddress: address, city: city, state: state, zipCode: zipCode, vendorCompany: VendorCompanies(rawValue: company!), visitDate: visit, projectNumber: ContractEmployeeProjectNumbers(rawValue: number!))
-                pass = Kiosk.generatePass(entrant: entrant)
-                
-                if pass != nil {
-                    performSegue(withIdentifier: "viewPass", sender: (Any).self)
-                }
+                entrant = Employee(type: type, firstName: firstName, lastName: lastName, birthday: dob, streetAddress: address, city: city, state: state, zipCode: numberZipCode, vendorCompany: VendorCompanies(rawValue: vendorCompany), visitDate: visit, projectNumber: ContractEmployeeProjectNumbers(rawValue: contractNumber))
             } else if button2.isSelected {
                 let type = Employee.EmployeeType.vendor
-                let entrant = Employee(type: type, firstName: firstName, lastName: lastName, birthday: dob, streetAddress: address, city: city, state: state, zipCode: zipCode, vendorCompany: VendorCompanies(rawValue: company!), visitDate: visit, projectNumber: ContractEmployeeProjectNumbers(rawValue: number!))
-                pass = Kiosk.generatePass(entrant: entrant)
-                
-                if pass != nil {
-                    performSegue(withIdentifier: "viewPass", sender: (Any).self)
-                }
+                entrant = Employee(type: type, firstName: firstName, lastName: lastName, birthday: dob, streetAddress: address, city: city, state: state, zipCode: numberZipCode, vendorCompany: VendorCompanies(rawValue: vendorCompany), visitDate: visit, projectNumber: ContractEmployeeProjectNumbers(rawValue: contractNumber))
             }
+        }
+        
+        guard let newEntrant = entrant else { return }
+        
+        do {
+            pass = try Kiosk.generatePass(entrant: newEntrant)
+            if pass != nil {
+                performSegue(withIdentifier: "viewPass", sender: (Any).self)
+            }
+        } catch GuestRegistrationErrors.invalidFirstName {
+            showAlert(title: "Missing information", message: GuestRegistrationErrors.invalidFirstName.localizedDescription)
+        } catch GuestRegistrationErrors.invalidLastName {
+            showAlert(title: "Missing information", message: GuestRegistrationErrors.invalidLastName.localizedDescription)
+        } catch GuestRegistrationErrors.noFreeChildBirthday {
+            showAlert(title: "Missing information", message: GuestRegistrationErrors.noFreeChildBirthday.localizedDescription)
+        } catch GuestRegistrationErrors.childBirthdayNotConvertibleToDate {
+            showAlert(title: "Missing information", message: GuestRegistrationErrors.childBirthdayNotConvertibleToDate.localizedDescription)
+        } catch GuestRegistrationErrors.invalidFreeChildBirthday {
+            showAlert(title: "Missing information", message: GuestRegistrationErrors.invalidFreeChildBirthday.localizedDescription)
+        } catch GuestRegistrationErrors.noSeniorBirthday {
+            showAlert(title: "Missing information", message: GuestRegistrationErrors.noSeniorBirthday.localizedDescription)
+        } catch GuestRegistrationErrors.seniorBirthdayNotConvertibleToDate {
+            showAlert(title: "Missing information", message: GuestRegistrationErrors.seniorBirthdayNotConvertibleToDate.localizedDescription)
+        } catch GuestRegistrationErrors.invalidSeniorBirthday {
+            showAlert(title: "Missing information", message: GuestRegistrationErrors.invalidSeniorBirthday.localizedDescription)
+        } catch GuestRegistrationErrors.invalidSeasonPassAddress {
+            showAlert(title: "Missing information", message: GuestRegistrationErrors.invalidSeasonPassAddress.localizedDescription)
+        } catch GuestRegistrationErrors.invalidSeasonPassCity {
+            showAlert(title: "Missing information", message: GuestRegistrationErrors.invalidSeasonPassCity.localizedDescription)
+        } catch GuestRegistrationErrors.invalidSeasonPassState {
+            showAlert(title: "Missing information", message: GuestRegistrationErrors.invalidSeasonPassState.localizedDescription)
+        } catch GuestRegistrationErrors.invalidSeasonPassZipCode {
+            showAlert(title: "Missing information", message: GuestRegistrationErrors.invalidSeasonPassZipCode.localizedDescription)
+        } catch EmployeeRegistrationErrors.invalidFirstName {
+            showAlert(title: "Missing information", message: EmployeeRegistrationErrors.invalidFirstName.localizedDescription)
+        } catch EmployeeRegistrationErrors.invalidLastName {
+            showAlert(title: "Missing information", message: EmployeeRegistrationErrors.invalidLastName.localizedDescription)
+        } catch EmployeeRegistrationErrors.invalidAddress {
+            showAlert(title: "Missing information", message: EmployeeRegistrationErrors.invalidAddress.localizedDescription)
+        } catch EmployeeRegistrationErrors.invalidCity {
+            showAlert(title: "Missing information", message: EmployeeRegistrationErrors.invalidCity.localizedDescription)
+        } catch EmployeeRegistrationErrors.invalidState {
+            showAlert(title: "Missing information", message: EmployeeRegistrationErrors.invalidState.localizedDescription)
+        } catch EmployeeRegistrationErrors.invalidZipCode {
+            showAlert(title: "Missing information", message: EmployeeRegistrationErrors.invalidZipCode.localizedDescription)
+        } catch EmployeeRegistrationErrors.invalidContractProjectNumber {
+            showAlert(title: "Missing information", message: EmployeeRegistrationErrors.invalidContractProjectNumber.localizedDescription)
+        } catch EmployeeRegistrationErrors.invalidVendorCompany {
+            showAlert(title: "Missing information", message: EmployeeRegistrationErrors.invalidVendorCompany.localizedDescription)
+        } catch EmployeeRegistrationErrors.invalidVendorVisitDate {
+            showAlert(title: "Missing information", message: EmployeeRegistrationErrors.invalidVendorVisitDate.localizedDescription)
+        } catch EmployeeRegistrationErrors.invalidVendorBirthday {
+            showAlert(title: "Missing information", message: EmployeeRegistrationErrors.invalidVendorBirthday.localizedDescription)
+        } catch let error {
+            print("\(error)")
         }
     }
     
     @IBAction func populateDateButtonPressed(_ sender: Any) {
-        let dataList = DummyData.loadData()
         if guestButton.isSelected {
             if button1.isSelected { // classic
-                let data = dataList[0]
+                let data = DummyData.defaultClassic
                 firstNameEntry.text = data.firstName
                 lastNameEntry.text = data.lastName
             } else if button2.isSelected { // free child
-                let data = dataList[1]
+                let data = DummyData.defaultFreeChild
                 firstNameEntry.text = data.firstName
                 lastNameEntry.text = data.lastName
                 
@@ -471,7 +476,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
                     dobEntry.text = dob
                 }
             } else if button3.isSelected { // senior
-                let data = dataList[2]
+                let data = DummyData.defaultSenior
                 firstNameEntry.text = data.firstName
                 lastNameEntry.text = data.lastName
                 
@@ -481,11 +486,11 @@ class ViewController: UIViewController, UITextFieldDelegate {
             }
         } else if specialButton.isSelected {
             if button1.isSelected { // vip
-                let data = dataList[3]
+                let data = DummyData.defaultVip
                 firstNameEntry.text = data.firstName
                 lastNameEntry.text = data.lastName
             } else if button2.isSelected { // season pass
-                let data = dataList[4]
+                let data = DummyData.defaultSeason
                 firstNameEntry.text = data.firstName
                 lastNameEntry.text = data.lastName
                 
@@ -498,7 +503,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
             }
         } else if employeeButton.isSelected {
             if button1.isSelected { // food service
-                let data = dataList[5]
+                let data = DummyData.defaultFoodService
                 firstNameEntry.text = data.firstName
                 lastNameEntry.text = data.lastName
                 
@@ -509,7 +514,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
                     zipcodeEntry.text = String(describing: zip)
                 }
             } else if button2.isSelected { // ride service
-                let data = dataList[6]
+                let data = DummyData.defaultRideService
                 firstNameEntry.text = data.firstName
                 lastNameEntry.text = data.lastName
                 
@@ -520,7 +525,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
                     zipcodeEntry.text = String(describing: zip)
                 }
             } else if button3.isSelected { // maintenance
-                let data = dataList[7]
+                let data = DummyData.defaultMaintenance
                 firstNameEntry.text = data.firstName
                 lastNameEntry.text = data.lastName
                 
@@ -532,7 +537,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 }
             }
             if button4.isSelected { // manager
-                let data = dataList[8]
+                let data = DummyData.defaultManager
                 firstNameEntry.text = data.firstName
                 lastNameEntry.text = data.lastName
                 
@@ -545,12 +550,11 @@ class ViewController: UIViewController, UITextFieldDelegate {
             }
         } else if servicesButton.isSelected {
             if button1.isSelected { // contract employee
-                let data = dataList[9]
-                guard let contractor = data as? Employee else { return }
-                firstNameEntry.text = contractor.firstName
-                lastNameEntry.text = contractor.lastName
+                let data = DummyData.defaultContract
+                firstNameEntry.text = data.firstName
+                lastNameEntry.text = data.lastName
                 
-                if let address = contractor.streetAddress, let city = contractor.city, let state = contractor.state, let zip = contractor.zipCode, let projectNumber = contractor.projectNumber {
+                if let address = data.streetAddress, let city = data.city, let state = data.state, let zip = data.zipCode, let projectNumber = data.projectNumber {
                     addressEntry.text = address
                     cityEntry.text = city
                     stateEntry.text = state
@@ -558,12 +562,11 @@ class ViewController: UIViewController, UITextFieldDelegate {
                     projectNumberEntry.text = String(describing: projectNumber.rawValue)
                 }
             } else if button2.isSelected { // vendor
-                let data = dataList[10]
-                guard let vendor = data as? Employee else { return }
-                firstNameEntry.text = vendor.firstName
-                lastNameEntry.text = vendor.lastName
+                let data = DummyData.defaultVendor
+                firstNameEntry.text = data.firstName
+                lastNameEntry.text = data.lastName
                 
-                if let company = vendor.vendorCompany, let dob = vendor.birthday, let visit = vendor.visitDate {
+                if let company = data.vendorCompany, let dob = data.birthday, let visit = data.visitDate {
                     companyEntry.text = company.rawValue
                     dobEntry.text = dob
                     dateOfVisit.text = visit
@@ -576,7 +579,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
         if segue.destination is PassViewController {
             let destinationViewController = segue.destination as? PassViewController
             destinationViewController?.createdPass = pass
-            print("segue called")
         }
     }
     

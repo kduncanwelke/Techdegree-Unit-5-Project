@@ -8,24 +8,34 @@
 
 import Foundation
 
-// classic pass, base
-class Pass {
-    var rideAccess: Bool { return true }
-    var amusementAccess: Bool { return true }
-    var skipRideLines: Bool { return false }
-    var kitchenAccess: Bool { return false }
-    var rideControlAccess: Bool { return false }
-    var maintenanceAccess: Bool { return false }
-    var officeAccess: Bool { return false }
-    var foodDiscount: Int { return 0 }
-    var merchandiseDiscount: Int { return 0 }
+// base for pass
+protocol Pass {
+    var rideAccess: Bool { get set }
+    var amusementAccess: Bool { get set }
+    var skipRideLines: Bool { get set }
+    var kitchenAccess: Bool { get set }
+    var rideControlAccess: Bool { get set }
+    var maintenanceAccess: Bool { get set }
+    var officeAccess: Bool { get set }
+    var foodDiscount: Int { get set }
+    var merchandiseDiscount: Int { get set }
     
-    var passType: String { return PassType.classicPass.rawValue }
+    var passType: String { get set }
 }
 
 // classic pass
-class ClassicPass: Pass, GuestEntrant  {
+class ClassicPass: Pass, GuestEntrant {
     var entrant: Guest
+    var rideAccess = true
+    var amusementAccess = true
+    var skipRideLines = false
+    var kitchenAccess = false
+    var rideControlAccess = false
+    var maintenanceAccess = false
+    var officeAccess = false
+    var foodDiscount = 0
+    var merchandiseDiscount = 0
+    var passType = PassType.classicPass.rawValue
     
     init(entrant: Guest) {
         self.entrant = entrant
@@ -36,10 +46,17 @@ class ClassicPass: Pass, GuestEntrant  {
 class VipPass: Pass, GuestEntrant {
     var entrant: Guest
     
-    override var skipRideLines: Bool { return true }
-    override var foodDiscount: Int { return 10 }
-    override var merchandiseDiscount: Int { return 20 }
-    override var passType: String { return PassType.vipPass.rawValue }
+    var rideAccess = true
+    var amusementAccess = true
+    var kitchenAccess = false
+    var rideControlAccess = false
+    var maintenanceAccess = false
+    var officeAccess = false
+    
+    var skipRideLines = true
+    var foodDiscount = 10
+    var merchandiseDiscount = 20
+    var passType = PassType.vipPass.rawValue
     
     init(entrant: Guest) {
         self.entrant = entrant
@@ -50,7 +67,17 @@ class VipPass: Pass, GuestEntrant {
 class FreeChildPass: Pass, GuestEntrant {
     var entrant: Guest
     
-    override var passType: String { return PassType.freeChildPass.rawValue }
+    var rideAccess = true
+    var amusementAccess = true
+    var skipRideLines = false
+    var kitchenAccess = false
+    var rideControlAccess = false
+    var maintenanceAccess = false
+    var officeAccess = false
+    var foodDiscount = 0
+    var merchandiseDiscount = 0
+    
+    var passType = PassType.freeChildPass.rawValue
     
     init(entrant: Guest) {
         self.entrant = entrant
@@ -61,10 +88,17 @@ class FreeChildPass: Pass, GuestEntrant {
 class SeasonPass: Pass, GuestEntrant {
     var entrant: Guest
     
-    override var skipRideLines: Bool { return true }
-    override var foodDiscount: Int { return 10 }
-    override var merchandiseDiscount: Int { return 20 }
-    override var passType: String { return PassType.seasonPass.rawValue }
+    var rideAccess = true
+    var amusementAccess = true
+    var kitchenAccess = false
+    var rideControlAccess = false
+    var maintenanceAccess = false
+    var officeAccess = false
+    
+    var skipRideLines = true
+    var foodDiscount = 10
+    var merchandiseDiscount = 20
+    var passType = PassType.seasonPass.rawValue
     
     init(entrant: Guest) {
         self.entrant = entrant
@@ -75,10 +109,17 @@ class SeasonPass: Pass, GuestEntrant {
 class SeniorPass: Pass, GuestEntrant {
     var entrant: Guest
     
-    override var skipRideLines: Bool { return true }
-    override var foodDiscount: Int { return 10 }
-    override var merchandiseDiscount: Int { return 10 }
-    override var passType: String { return PassType.seniorPass.rawValue }
+    var rideAccess = true
+    var amusementAccess = true
+    var kitchenAccess = false
+    var rideControlAccess = false
+    var maintenanceAccess = false
+    var officeAccess = false
+    
+    var skipRideLines = true
+    var foodDiscount = 10
+    var merchandiseDiscount = 10
+    var passType = PassType.seniorPass.rawValue
     
     init(entrant: Guest) {
         self.entrant = entrant
@@ -89,10 +130,17 @@ class SeniorPass: Pass, GuestEntrant {
 class FoodServicePass: Pass, EmployeeEntrant {
     var entrant: Employee
     
-    override var kitchenAccess: Bool { return true }
-    override var foodDiscount: Int { return 15 }
-    override var merchandiseDiscount: Int { return 25 }
-    override var passType: String { return PassType.foodServicePass.rawValue }
+    var rideAccess = true
+    var amusementAccess = true
+    var skipRideLines = false
+    var rideControlAccess = false
+    var maintenanceAccess = false
+    var officeAccess = false
+    
+    var kitchenAccess = true
+    var foodDiscount = 15
+    var merchandiseDiscount = 25
+    var passType = PassType.foodServicePass.rawValue
     
     init(entrant: Employee) {
         self.entrant = entrant
@@ -103,10 +151,17 @@ class FoodServicePass: Pass, EmployeeEntrant {
 class RideServicesPass: Pass, EmployeeEntrant {
     var entrant: Employee
     
-    override var rideControlAccess: Bool { return true }
-    override var foodDiscount: Int { return 15 }
-    override var merchandiseDiscount: Int { return 25 }
-    override var passType: String { return PassType.rideServicePass.rawValue }
+    var rideAccess = true
+    var amusementAccess = true
+    var skipRideLines = false
+    var kitchenAccess = false
+    var maintenanceAccess = false
+    var officeAccess = false
+
+    var rideControlAccess = true
+    var foodDiscount = 15
+    var merchandiseDiscount = 25
+    var passType = PassType.rideServicePass.rawValue
     
     init(entrant: Employee) {
         self.entrant = entrant
@@ -117,12 +172,17 @@ class RideServicesPass: Pass, EmployeeEntrant {
 class MaintenancePass: Pass, EmployeeEntrant {
     var entrant: Employee
     
-    override var kitchenAccess: Bool { return true }
-    override var rideControlAccess: Bool { return true }
-    override var maintenanceAccess: Bool { return true }
-    override var foodDiscount: Int { return 15 }
-    override var merchandiseDiscount: Int { return 25 }
-    override var passType: String { return PassType.maintenancePass.rawValue }
+    var rideAccess = true
+    var amusementAccess = true
+    var skipRideLines = false
+    var officeAccess = false
+    
+    var kitchenAccess = true
+    var rideControlAccess = true
+    var maintenanceAccess = true
+    var foodDiscount = 15
+    var merchandiseDiscount = 25
+    var passType = PassType.maintenancePass.rawValue
     
     init(entrant: Employee) {
         self.entrant = entrant
@@ -133,13 +193,17 @@ class MaintenancePass: Pass, EmployeeEntrant {
 class ManagerPass: Pass, EmployeeEntrant {
     var entrant: Employee
     
-    override var officeAccess: Bool { return true }
-    override var kitchenAccess: Bool { return true }
-    override var rideControlAccess: Bool { return true }
-    override var maintenanceAccess: Bool { return true }
-    override var foodDiscount: Int { return 25 }
-    override var merchandiseDiscount: Int { return 25 }
-    override var passType: String { return PassType.managerPass.rawValue }
+    var rideAccess = true
+    var amusementAccess = true
+    var skipRideLines = false
+    
+    var officeAccess = true
+    var kitchenAccess = true
+    var rideControlAccess = true
+    var maintenanceAccess = true
+    var foodDiscount = 25
+    var merchandiseDiscount = 25
+    var passType = PassType.managerPass.rawValue
     
     init(entrant: Employee) {
         self.entrant = entrant
@@ -148,51 +212,55 @@ class ManagerPass: Pass, EmployeeEntrant {
 
 // contract employee pass
 class ContractPass: Pass, EmployeeEntrant {
+
     var entrant: Employee
     
-    override var rideAccess: Bool { return false }
+    var skipRideLines = false
+    var foodDiscount = 0
+    var merchandiseDiscount = 0
+    var rideAccess = false
     
-    override var amusementAccess: Bool {
+    lazy var amusementAccess: Bool = {
         switch entrant.projectNumber {
         case .firstContract?, .secondContract?, .thirdContract?:
             return true
         default:
             return false
         }
-    }
-    override var rideControlAccess: Bool {
+    }()
+    lazy var rideControlAccess: Bool = {
         switch entrant.projectNumber {
         case .firstContract?, .secondContract?, .thirdContract?:
             return true
         default:
             return false
         }
-    }
-    override var kitchenAccess: Bool {
+    }()
+    lazy var kitchenAccess: Bool = {
         switch entrant.projectNumber {
         case .thirdContract?, .fifthContract?:
             return true
         default:
             return false
         }
-    }
-    override var maintenanceAccess: Bool {
+    }()
+    lazy var maintenanceAccess: Bool = {
         switch entrant.projectNumber {
         case .secondContract?, .thirdContract?, .fifthContract?:
             return true
         default:
             return false
         }
-    }
-    override var officeAccess: Bool {
+    }()
+    lazy var officeAccess: Bool = {
         switch entrant.projectNumber {
         case .thirdContract?, .fourthContract?:
             return true
         default:
             return false
         }
-    }
-    override var passType: String { return PassType.contractorPass.rawValue }
+    }()
+    var passType = PassType.contractorPass.rawValue
     
     init(entrant: Employee) {
         self.entrant = entrant
@@ -201,51 +269,56 @@ class ContractPass: Pass, EmployeeEntrant {
 
 // vendor pass
 class VendorPass: Pass, EmployeeEntrant {
+
     var entrant: Employee
+
+    var skipRideLines = false
+    var foodDiscount = 0
+    var merchandiseDiscount = 0
     
-    override var rideAccess: Bool { return false }
+    var rideAccess = false
     
-    override var amusementAccess: Bool {
+    lazy var amusementAccess: Bool = {
         switch entrant.vendorCompany {
         case .orkin?, .nwElectrical?:
             return true
         default:
             return false
         }
-    }
-    override var rideControlAccess: Bool {
+    }()
+    lazy var rideControlAccess: Bool = {
         switch entrant.vendorCompany {
         case .orkin?, .nwElectrical?:
             return true
         default:
             return false
         }
-    }
-    override var kitchenAccess: Bool {
+    }()
+    lazy var kitchenAccess: Bool = {
         switch entrant.vendorCompany {
         case .acme?, .orkin?, .nwElectrical?:
             return true
         default:
             return false
         }
-    }
-    override var maintenanceAccess: Bool {
+    }()
+    lazy var maintenanceAccess: Bool = {
         switch entrant.vendorCompany {
         case .fedex?, .nwElectrical?:
             return true
         default:
             return false
         }
-    }
-    override var officeAccess: Bool {
+    }()
+    lazy var officeAccess: Bool = {
         switch entrant.vendorCompany {
         case .fedex?, .nwElectrical?:
             return true
         default:
             return false
         }
-    }
-    override var passType: String { return PassType.vendorPass.rawValue }
+    }()
+    var passType = PassType.vendorPass.rawValue
     
     init(entrant: Employee) {
         self.entrant = entrant

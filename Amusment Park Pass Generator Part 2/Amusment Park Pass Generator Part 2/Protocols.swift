@@ -16,9 +16,6 @@ protocol Entrant {
     var city: String?  { get set }
     var state: String?  { get set }
     var zipCode: Int?  { get set }
-    
-    //func checkRequirements(entrant: Entrant) throws
-    //func isSubmissionErrorFree(entrant: Entrant) -> Bool
 }
 
 protocol PassEntrant {
@@ -31,5 +28,6 @@ protocol GuestEntrant: PassEntrant {
 protocol EmployeeEntrant: PassEntrant {
     var entrant: Employee { get set }
 }
+
 
 

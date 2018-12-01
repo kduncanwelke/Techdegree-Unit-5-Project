@@ -7,10 +7,12 @@
 //
 
 import Foundation
+import UIKit
 
 extension Entrant {
     // check that all required values are present
-    func checkRequirements() throws {
+    
+    func checkRequirements() throws -> Bool {
         // check requirements for guest type
         switch self {
         case let guest as Guest:
@@ -57,7 +59,7 @@ extension Entrant {
                     throw GuestRegistrationErrors.invalidSeasonPassZipCode
                 }
             default:
-                break
+                return true
             }
         // check requirements for employee type
         case let employee as Employee:
@@ -88,12 +90,16 @@ extension Entrant {
                     throw EmployeeRegistrationErrors.invalidState
                 } else if employee.zipCode == nil {
                     throw EmployeeRegistrationErrors.invalidZipCode
-                } else if employee.projectNumber == nil {
+                } else if employee.projectNumber?.rawValue != nil {
+                    if employee.projectNumber!.rawValue != ContractEmployeeProjectNumbers.firstContract.rawValue || employee.projectNumber!.rawValue != ContractEmployeeProjectNumbers.secondContract.rawValue || employee.projectNumber!.rawValue != ContractEmployeeProjectNumbers.thirdContract.rawValue || employee.projectNumber!.rawValue != ContractEmployeeProjectNumbers.fourthContract.rawValue || employee.projectNumber!.rawValue != ContractEmployeeProjectNumbers.fifthContract.rawValue {
                     throw EmployeeRegistrationErrors.invalidContractProjectNumber
+                    }
                 }
             case .vendor:
-                if employee.vendorCompany == nil {
-                    throw EmployeeRegistrationErrors.invalidVendorCompany
+                if employee.vendorCompany?.rawValue != nil {
+                    if employee.vendorCompany!.rawValue != VendorCompanies.acme.rawValue || employee.vendorCompany!.rawValue != VendorCompanies.fedex.rawValue || employee.vendorCompany!.rawValue != VendorCompanies.nwElectrical.rawValue || employee.vendorCompany!.rawValue != VendorCompanies.orkin.rawValue {
+                        throw EmployeeRegistrationErrors.invalidVendorCompany
+                    }
                 } else if employee.visitDate == "" {
                     throw EmployeeRegistrationErrors.invalidVendorVisitDate
                 } else if employee.birthday == "" {
@@ -101,105 +107,9 @@ extension Entrant {
                 }
             }
         default:
-            break
-        }
-    }
-    
-    // check that submission is error-free
-    func isSubmissionErrorFree() -> Bool {
-        // check guest type for errors
-        switch self {
-        case let guest as Guest:
-            do {
-                try guest.checkRequirements()
-            } catch GuestRegistrationErrors.invalidFirstName {
-                print("Invalid first name")
-                
-                return false
-            } catch GuestRegistrationErrors.invalidLastName {
-                print("Invalid last name")
-                return false
-            } catch GuestRegistrationErrors.noFreeChildBirthday {
-                print("No birthday supplied to verify free child")
-                return false
-            } catch GuestRegistrationErrors.childBirthdayNotConvertibleToDate {
-                print("Cannot convert input to date")
-                return false
-            }catch GuestRegistrationErrors.invalidFreeChildBirthday {
-                print("Birthday does not confirm child under 5 years of age")
-                return false
-            } catch GuestRegistrationErrors.noSeniorBirthday {
-                print("No birthday provided to confirm senior")
-                return false
-            } catch GuestRegistrationErrors.seniorBirthdayNotConvertibleToDate {
-                print("Cannot convert input to date")
-                return false
-            } catch GuestRegistrationErrors.invalidSeniorBirthday {
-                print("Birthday does not confirm senior over 65")
-                return false
-            } catch GuestRegistrationErrors.invalidSeasonPassAddress {
-                print("No address supplied for season pass guest")
-                return false
-            } catch GuestRegistrationErrors.invalidSeasonPassCity {
-                print("No city supplied for season pass guest")
-                return false
-            } catch GuestRegistrationErrors.invalidSeasonPassState {
-                print("No state supplied for season pass guest")
-                return false
-            } catch GuestRegistrationErrors.invalidSeasonPassZipCode {
-                print("No zipcode supplied for season pass guest")
-                return false
-            } catch let error {
-                print("\(error)")
-                return false
-            }
-            print("error free")
             return true
-        
-        // check employee type for errors
-        case let employee as Employee:
-            do {
-                try employee.checkRequirements()
-            } catch EmployeeRegistrationErrors.invalidFirstName {
-                print("Invalid first naeme")
-                return false
-            } catch EmployeeRegistrationErrors.invalidLastName {
-                print("Invalid last name")
-                return false
-            } catch EmployeeRegistrationErrors.invalidAddress {
-                print("Invalid address")
-                return false
-            } catch EmployeeRegistrationErrors.invalidCity {
-                print("Invalid city")
-                return false
-            } catch EmployeeRegistrationErrors.invalidState {
-                print("Invalid state")
-                return false
-            } catch EmployeeRegistrationErrors.invalidZipCode {
-                print("Invalid zipcode")
-                return false
-            } catch EmployeeRegistrationErrors.invalidContractProjectNumber {
-                print("Invalid project number for contract employee")
-                return false
-            } catch EmployeeRegistrationErrors.invalidVendorCompany {
-                print("Invalid vendor company")
-                return false
-            } catch EmployeeRegistrationErrors.invalidVendorVisitDate {
-                print("Invalid vendor visit date")
-                return false
-            } catch EmployeeRegistrationErrors.invalidVendorBirthday {
-                print("Invalid vendor birth date")
-                return false
-            } catch let error {
-                print("\(error)")
-                return false
-            }
-            print("error free")
-            return true
-        default:
-            break
         }
-        return true // if no errors were thrown (aka false bools returned) return true to satisfy return requirement
+        return true // if switch is completed without throwing errors return true
     }
 
     // run when checking freechild age, converting entered string into date
@@ -239,5 +149,15 @@ extension Entrant {
     }
     
 }
+
+extension UIViewController {
+    func showAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+}
+
+
 
 
