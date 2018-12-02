@@ -8,6 +8,8 @@
 
 import Foundation
 
+
+// default data
 struct DummyData {
     
     static let defaultClassic = Guest(type: .classic, firstName: "A", lastName: "Person", birthday: "", streetAddress: "", city: "", state: "", zipCode: nil)

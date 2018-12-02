@@ -10,10 +10,8 @@ import Foundation
 import UIKit
 
 extension Entrant {
-    // check that all required values are present
-    
     func checkRequirements() throws -> Bool {
-        // check requirements for guest type
+        // check requirements for guest type and throw errors
         switch self {
         case let guest as Guest:
         
@@ -61,7 +59,7 @@ extension Entrant {
             default:
                 return true
             }
-        // check requirements for employee type
+        // check requirements for employee type and throw errors
         case let employee as Employee:
             
             if employee.firstName == "" {
@@ -82,28 +80,36 @@ extension Entrant {
                     throw EmployeeRegistrationErrors.invalidZipCode
                 }
             case .contractEmployee:
-                if employee.streetAddress == ""  {
+                if employee.streetAddress == "" {
                     throw EmployeeRegistrationErrors.invalidAddress
-                } else if employee.city == ""  {
+                } else if employee.city == "" {
                     throw EmployeeRegistrationErrors.invalidCity
                 } else if employee.state == "" {
                     throw EmployeeRegistrationErrors.invalidState
                 } else if employee.zipCode == nil {
                     throw EmployeeRegistrationErrors.invalidZipCode
-                } else if employee.projectNumber?.rawValue != nil {
-                    if employee.projectNumber!.rawValue != ContractEmployeeProjectNumbers.firstContract.rawValue || employee.projectNumber!.rawValue != ContractEmployeeProjectNumbers.secondContract.rawValue || employee.projectNumber!.rawValue != ContractEmployeeProjectNumbers.thirdContract.rawValue || employee.projectNumber!.rawValue != ContractEmployeeProjectNumbers.fourthContract.rawValue || employee.projectNumber!.rawValue != ContractEmployeeProjectNumbers.fifthContract.rawValue {
+                } else if employee.projectNumber == nil {
                     throw EmployeeRegistrationErrors.invalidContractProjectNumber
+                } else {
+                    if employee.projectNumber == .firstContract || employee.projectNumber == .secondContract || employee.projectNumber == .thirdContract || employee.projectNumber == .fourthContract || employee.projectNumber == .fifthContract {
+                     // ok, there is a match
+                    } else {
+                     throw EmployeeRegistrationErrors.contractNumberDoesntMatch
                     }
                 }
             case .vendor:
-                if employee.vendorCompany?.rawValue != nil {
-                    if employee.vendorCompany!.rawValue != VendorCompanies.acme.rawValue || employee.vendorCompany!.rawValue != VendorCompanies.fedex.rawValue || employee.vendorCompany!.rawValue != VendorCompanies.nwElectrical.rawValue || employee.vendorCompany!.rawValue != VendorCompanies.orkin.rawValue {
-                        throw EmployeeRegistrationErrors.invalidVendorCompany
-                    }
-                } else if employee.visitDate == "" {
+                 if employee.visitDate == "" {
                     throw EmployeeRegistrationErrors.invalidVendorVisitDate
                 } else if employee.birthday == "" {
                     throw EmployeeRegistrationErrors.invalidVendorBirthday
+                } else if employee.vendorCompany == nil {
+                    throw EmployeeRegistrationErrors.invalidVendorCompany
+                } else {
+                    if employee.vendorCompany == .acme || employee.vendorCompany == .fedex || employee.vendorCompany == .nwElectrical || employee.vendorCompany == VendorCompanies.orkin {
+                    // ok, there is a match
+                    } else {
+                    throw EmployeeRegistrationErrors.vendorCompanyNotListed
+                    }
                 }
             }
         default:
@@ -125,11 +131,12 @@ extension Entrant {
         }
         let age = difference / 365
         
-        print("\(age)")
+        print("Free child is \(age) years old")
         return age
-        
     }
     
+    
+    // convert string to date
     func convertDate(birthdayDate: String?) -> Date? {
         if let birthday = birthdayDate {
             
@@ -150,6 +157,7 @@ extension Entrant {
     
 }
 
+// add reusable alert functionality
 extension UIViewController {
     func showAlert(title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)

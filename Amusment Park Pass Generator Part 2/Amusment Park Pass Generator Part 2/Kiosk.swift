@@ -9,12 +9,14 @@
 import Foundation
 
 struct Kiosk {
-    
+    // create pass
     static func generatePass(entrant: Entrant) throws -> Pass? {
         let success = try entrant.checkRequirements()
+        // check that all fields have been completed with above
         switch entrant {
         case is Guest:
             guard let guest = entrant as? Guest else { return nil }
+            // typecast so this will work
             
             if success {
                 switch guest.type {
@@ -41,6 +43,7 @@ struct Kiosk {
             
         case is Employee:
             guard let employee = entrant as? Employee else { return nil }
+            // type cast so this will work
             
             if success {
                 switch employee.type {
@@ -67,27 +70,26 @@ struct Kiosk {
                 print("Submission not error free, pass not generated")
                 return nil
             }
-            
         default:
             return nil
         }
     }
 
     
-    // swipe function, checks for birthday and access to given access point
+    // swipe function, checks for current birthday and access to given access point
     static func swipe(pass: Pass, forAccessTo: AccessPoint) throws -> (Bool, Bool) {
-        
-        guard TimerHandling.seconds == 0 else {
+        if TimerHandling.seconds != 0 {
             print("Your pass cannot be swiped again immediately - please pause and try again.")
             throw PassSwipeErrors.passSwipedTooSoon
-            //return (false, false)
         }
         
         // run timer to ensure pass is not swiped within 5 seconds
         TimerHandling.timer.fire()
         
+        // checks if it's the entrant's birthday
         let isBirthday = checkForBirthday(personWithPass: pass)
         
+        // determine access rights
         switch forAccessTo {
         case .rides:
             if pass.rideAccess == true {
@@ -144,7 +146,6 @@ struct Kiosk {
                 return (false, isBirthday)
             }
         }
-        
     }
     
     enum AccessPoint {
@@ -162,7 +163,7 @@ struct Kiosk {
     
     // run during swipe to check if it is visitor's birthday
     static func checkForBirthday(personWithPass: Pass) -> Bool {
-        
+        // have to do downcasts as pass itself is only a base and doesn't contain an entrant
         switch personWithPass {
         case is ClassicPass:
             guard let entry = personWithPass as? ClassicPass else { return false }
@@ -269,6 +270,7 @@ struct Kiosk {
         return false // return false if no results
     }
     
+    // confirms if birthday day and month match current day and month, used above
     static func doBirthdayCalculations(birthday: String) -> Bool? {
         let date = Date()
         let calendar = Calendar.current

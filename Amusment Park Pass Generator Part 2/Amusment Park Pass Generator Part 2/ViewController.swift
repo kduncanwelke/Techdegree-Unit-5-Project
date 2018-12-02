@@ -66,7 +66,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-    
+    // functions to toggle required fields
     func toggleGuestButtons() {
         dobEntry.isEnabled = false
         dateOfVisit.isEnabled = false
@@ -187,7 +187,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         return updatedText.count <= 30
     }
     
-    
+    // change display of subset of pass types based on entrant type chosen
     @IBAction func selectType(_ sender: UIButton) {
         switch sender.tag {
         case 1:
@@ -280,6 +280,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         // change selected button color to light blue
         sender.setTitleColor(UIColor(red: 0.4627, green: 0.8392, blue: 1, alpha: 1.0) /* #76d6ff */, for: .selected)
         
+        // based on selected buttons, toggle buttons for each pass input type
         switch sender.tag {
         case 5:
             button1.isSelected = true
@@ -343,72 +344,88 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func generatePassButtonPressed(_ sender: UIButton) {
+        // use fields to generate input for entrants
         guard let firstName = firstNameEntry.text else { return }
         guard let lastName = lastNameEntry.text else { return }
         let dob = dobEntry.text
         let address = addressEntry.text
         let city = cityEntry.text
         let state = stateEntry.text
-        let zipCode = zipcodeEntry.text
-        guard let numberZipCode = Int(zipCode!) else { return }
-        
+        let zipCode: Int? = Int(zipcodeEntry.text!)
         let visit = dateOfVisit.text
-        
-        let vendor = companyEntry.text
-        guard let vendorCompany = vendor else { return }
-        
-        let number = projectNumberEntry.text
-        guard let contractNumber = Int(number!) else { return }
     
         var entrant: Entrant?
         
+        // assign types to entrant based on selected buttons, initialize entrants
         if guestButton.isSelected {
             if button1.isSelected {
                 let type = Guest.GuestType.classic
-                entrant = Guest(type: type, firstName: firstName, lastName: lastName, birthday: dob, streetAddress: address, city: city, state: state, zipCode: numberZipCode)
+                entrant = Guest(type: type, firstName: firstName, lastName: lastName, birthday: dob, streetAddress: address, city: city, state: state, zipCode: zipCode)
             } else if button2.isSelected {
                 let type = Guest.GuestType.freeChild
-                entrant = Guest(type: type, firstName: firstName, lastName: lastName, birthday: dob, streetAddress: address, city: city, state: state, zipCode: numberZipCode)
+                entrant = Guest(type: type, firstName: firstName, lastName: lastName, birthday: dob, streetAddress: address, city: city, state: state, zipCode: zipCode)
             } else if button3.isSelected {
                 let type = Guest.GuestType.senior
-                entrant = Guest(type: type, firstName: firstName, lastName: lastName, birthday: dob, streetAddress: address, city: city, state: state, zipCode: numberZipCode)
+                entrant = Guest(type: type, firstName: firstName, lastName: lastName, birthday: dob, streetAddress: address, city: city, state: state, zipCode: zipCode)
             }
         } else if specialButton.isSelected {
             if button1.isSelected {
                 let type = Guest.GuestType.vip
-                entrant = Guest(type: type, firstName: firstName, lastName: lastName, birthday: dob, streetAddress: address, city: city, state: state, zipCode: numberZipCode)
+                entrant = Guest(type: type, firstName: firstName, lastName: lastName, birthday: dob, streetAddress: address, city: city, state: state, zipCode: zipCode)
             } else if button2.isSelected {
                 let type = Guest.GuestType.seasonPass
-                entrant = Guest(type: type, firstName: firstName, lastName: lastName, birthday: dob, streetAddress: address, city: city, state: state, zipCode: numberZipCode)
+                entrant = Guest(type: type, firstName: firstName, lastName: lastName, birthday: dob, streetAddress: address, city: city, state: state, zipCode: zipCode)
             }
         } else if employeeButton.isSelected {
             if button1.isSelected {
                 let type = Employee.EmployeeType.foodService
-                entrant = Employee(type: type, firstName: firstName, lastName: lastName, birthday: dob, streetAddress: address, city: city, state: state, zipCode: numberZipCode)
+                entrant = Employee(type: type, firstName: firstName, lastName: lastName, birthday: dob, streetAddress: address, city: city, state: state, zipCode: zipCode)
             } else if button2.isSelected {
                 let type = Employee.EmployeeType.rideService
-                entrant = Employee(type: type, firstName: firstName, lastName: lastName, birthday: dob, streetAddress: address, city: city, state: state, zipCode: numberZipCode)
+                entrant = Employee(type: type, firstName: firstName, lastName: lastName, birthday: dob, streetAddress: address, city: city, state: state, zipCode: zipCode)
             } else if button3.isSelected {
                 let type = Employee.EmployeeType.maintenance
-                entrant = Employee(type: type, firstName: firstName, lastName: lastName, birthday: dob, streetAddress: address, city: city, state: state, zipCode: numberZipCode)
+                entrant = Employee(type: type, firstName: firstName, lastName: lastName, birthday: dob, streetAddress: address, city: city, state: state, zipCode: zipCode)
             } else if button4.isSelected {
                 let type = Employee.EmployeeType.manager
-                entrant = Employee(type: type, firstName: firstName, lastName: lastName, birthday: dob, streetAddress: address, city: city, state: state, zipCode: numberZipCode)
+                entrant = Employee(type: type, firstName: firstName, lastName: lastName, birthday: dob, streetAddress: address, city: city, state: state, zipCode: zipCode)
             }
         } else if servicesButton.isSelected {
             if button1.isSelected {
                 let type = Employee.EmployeeType.contractEmployee
-                entrant = Employee(type: type, firstName: firstName, lastName: lastName, birthday: dob, streetAddress: address, city: city, state: state, zipCode: numberZipCode, vendorCompany: VendorCompanies(rawValue: vendorCompany), visitDate: visit, projectNumber: ContractEmployeeProjectNumbers(rawValue: contractNumber))
+                guard let contractNumber = projectNumberEntry.text else { return }
+                
+                if let number = Int(contractNumber), let project = ContractEmployeeProjectNumbers(rawValue: number) {
+                
+                entrant = Employee(type: type, firstName: firstName, lastName: lastName, birthday: dob, streetAddress: address, city: city, state: state, zipCode: zipCode, vendorCompany: nil, visitDate: visit, projectNumber: project)
+                } else {
+                    // add condition for possible nil to ensure failure
+                    let number: ContractEmployeeProjectNumbers? = nil
+                    entrant = Employee(type: type, firstName: firstName, lastName: lastName, birthday: dob, streetAddress: address, city: city, state: state, zipCode: zipCode, vendorCompany: nil, visitDate: visit, projectNumber: number)
+                }
+                
             } else if button2.isSelected {
                 let type = Employee.EmployeeType.vendor
-                entrant = Employee(type: type, firstName: firstName, lastName: lastName, birthday: dob, streetAddress: address, city: city, state: state, zipCode: numberZipCode, vendorCompany: VendorCompanies(rawValue: vendorCompany), visitDate: visit, projectNumber: ContractEmployeeProjectNumbers(rawValue: contractNumber))
+                guard let vendor = companyEntry.text else { return }
+                
+                if let vendorCompany = VendorCompanies(rawValue: vendor) {
+                
+                entrant = Employee(type: type, firstName: firstName, lastName: lastName, birthday: dob, streetAddress: address, city: city, state: state, zipCode: zipCode, vendorCompany: vendorCompany, visitDate: visit, projectNumber: nil)
+                } else {
+                    // add condition for possible nil to ensure failure
+                    let vendorCompany: VendorCompanies? = nil
+                     entrant = Employee(type: type, firstName: firstName, lastName: lastName, birthday: dob, streetAddress: address, city: city, state: state, zipCode: zipCode, vendorCompany: vendorCompany, visitDate: visit, projectNumber: nil)
+                }
             }
         }
         
+        // ensure entrant exists
         guard let newEntrant = entrant else { return }
         
+        // when entrant exists, pass into pass generation function, catch errors
         do {
             pass = try Kiosk.generatePass(entrant: newEntrant)
+            // if the pass was successfull generated, segue to next screen
             if pass != nil {
                 performSegue(withIdentifier: "viewPass", sender: (Any).self)
             }
@@ -450,8 +467,12 @@ class ViewController: UIViewController, UITextFieldDelegate {
             showAlert(title: "Missing information", message: EmployeeRegistrationErrors.invalidZipCode.localizedDescription)
         } catch EmployeeRegistrationErrors.invalidContractProjectNumber {
             showAlert(title: "Missing information", message: EmployeeRegistrationErrors.invalidContractProjectNumber.localizedDescription)
+        } catch EmployeeRegistrationErrors.contractNumberDoesntMatch {
+             showAlert(title: "Missing information", message: EmployeeRegistrationErrors.contractNumberDoesntMatch.localizedDescription)
         } catch EmployeeRegistrationErrors.invalidVendorCompany {
             showAlert(title: "Missing information", message: EmployeeRegistrationErrors.invalidVendorCompany.localizedDescription)
+        } catch EmployeeRegistrationErrors.vendorCompanyNotListed {
+            showAlert(title: "Missing information", message: EmployeeRegistrationErrors.vendorCompanyNotListed.localizedDescription)
         } catch EmployeeRegistrationErrors.invalidVendorVisitDate {
             showAlert(title: "Missing information", message: EmployeeRegistrationErrors.invalidVendorVisitDate.localizedDescription)
         } catch EmployeeRegistrationErrors.invalidVendorBirthday {
@@ -462,6 +483,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func populateDateButtonPressed(_ sender: Any) {
+        // populate fields with dummy data based on selections
         if guestButton.isSelected {
             if button1.isSelected { // classic
                 let data = DummyData.defaultClassic
@@ -576,6 +598,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // perform segue and pass the pass haha
         if segue.destination is PassViewController {
             let destinationViewController = segue.destination as? PassViewController
             destinationViewController?.createdPass = pass

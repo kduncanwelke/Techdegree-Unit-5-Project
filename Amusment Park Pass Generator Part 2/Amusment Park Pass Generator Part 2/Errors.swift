@@ -73,8 +73,10 @@ enum EmployeeRegistrationErrors: Error {
     case invalidZipCode
     
     case invalidContractProjectNumber
+    case contractNumberDoesntMatch
     
     case invalidVendorCompany
+    case vendorCompanyNotListed
     case invalidVendorBirthday
     case invalidVendorVisitDate
     
@@ -94,8 +96,12 @@ enum EmployeeRegistrationErrors: Error {
             return "Invalid zipcode"
         case .invalidContractProjectNumber:
             return "Invalid project number for contract employee"
+        case .contractNumberDoesntMatch:
+            return "Contract number entered does not match any on record"
         case .invalidVendorCompany:
             return "Invalid vendor company"
+        case .vendorCompanyNotListed:
+            return "Company entered is not one we work with"
         case .invalidVendorVisitDate:
             return "Invalid vendor visit date"
         case .invalidVendorBirthday:
@@ -104,6 +110,8 @@ enum EmployeeRegistrationErrors: Error {
     }
 }
 
+
+// pass swipe error, used for feedback on 5-second swipe rule
 enum PassSwipeErrors: Error {
     case passSwipedTooSoon
     

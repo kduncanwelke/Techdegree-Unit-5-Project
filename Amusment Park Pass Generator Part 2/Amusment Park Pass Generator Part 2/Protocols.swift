@@ -8,6 +8,7 @@
 
 import Foundation
 
+// protocol for entrants
 protocol Entrant {
     var firstName: String { get set }
     var lastName: String  { get set }

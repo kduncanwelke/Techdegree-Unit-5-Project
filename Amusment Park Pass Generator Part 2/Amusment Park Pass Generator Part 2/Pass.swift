@@ -8,7 +8,7 @@
 
 import Foundation
 
-// base for pass
+// base for pass, it's here rather than the protocols file cause it reads better
 protocol Pass {
     var rideAccess: Bool { get set }
     var amusementAccess: Bool { get set }
@@ -21,6 +21,7 @@ protocol Pass {
     var merchandiseDiscount: Int { get set }
     
     var passType: String { get set }
+    var passDetails: String { get set }
 }
 
 // classic pass
@@ -36,6 +37,7 @@ class ClassicPass: Pass, GuestEntrant {
     var foodDiscount = 0
     var merchandiseDiscount = 0
     var passType = PassType.classicPass.rawValue
+    var passDetails = "Basic amusement park access"
     
     init(entrant: Guest) {
         self.entrant = entrant
@@ -57,6 +59,7 @@ class VipPass: Pass, GuestEntrant {
     var foodDiscount = 10
     var merchandiseDiscount = 20
     var passType = PassType.vipPass.rawValue
+    var passDetails = "Upgraded access with the ability to skip lines"
     
     init(entrant: Guest) {
         self.entrant = entrant
@@ -78,6 +81,7 @@ class FreeChildPass: Pass, GuestEntrant {
     var merchandiseDiscount = 0
     
     var passType = PassType.freeChildPass.rawValue
+    var passDetails = "Free pass for child under 5"
     
     init(entrant: Guest) {
         self.entrant = entrant
@@ -99,6 +103,7 @@ class SeasonPass: Pass, GuestEntrant {
     var foodDiscount = 10
     var merchandiseDiscount = 20
     var passType = PassType.seasonPass.rawValue
+    var passDetails = "Season pass for frequent visitors, includes discounts"
     
     init(entrant: Guest) {
         self.entrant = entrant
@@ -120,6 +125,7 @@ class SeniorPass: Pass, GuestEntrant {
     var foodDiscount = 10
     var merchandiseDiscount = 10
     var passType = PassType.seniorPass.rawValue
+    var passDetails = "Special pass for visitors 65+, includes discounts"
     
     init(entrant: Guest) {
         self.entrant = entrant
@@ -141,6 +147,7 @@ class FoodServicePass: Pass, EmployeeEntrant {
     var foodDiscount = 15
     var merchandiseDiscount = 25
     var passType = PassType.foodServicePass.rawValue
+    var passDetails = "Pass for employees who work in food service, includes discounts"
     
     init(entrant: Employee) {
         self.entrant = entrant
@@ -162,6 +169,7 @@ class RideServicesPass: Pass, EmployeeEntrant {
     var foodDiscount = 15
     var merchandiseDiscount = 25
     var passType = PassType.rideServicePass.rawValue
+    var passDetails = "Pass for employees who work in ride service, includes discounts"
     
     init(entrant: Employee) {
         self.entrant = entrant
@@ -183,6 +191,7 @@ class MaintenancePass: Pass, EmployeeEntrant {
     var foodDiscount = 15
     var merchandiseDiscount = 25
     var passType = PassType.maintenancePass.rawValue
+    var passDetails = "Pass for employees who work in maintenance, includes discounts"
     
     init(entrant: Employee) {
         self.entrant = entrant
@@ -204,6 +213,7 @@ class ManagerPass: Pass, EmployeeEntrant {
     var foodDiscount = 25
     var merchandiseDiscount = 25
     var passType = PassType.managerPass.rawValue
+    var passDetails = "Pass for manager with complete access, includes discounts"
     
     init(entrant: Employee) {
         self.entrant = entrant
@@ -219,6 +229,8 @@ class ContractPass: Pass, EmployeeEntrant {
     var foodDiscount = 0
     var merchandiseDiscount = 0
     var rideAccess = false
+    
+    var passDetails = "Pass for contract employees"
     
     lazy var amusementAccess: Bool = {
         switch entrant.projectNumber {
@@ -277,6 +289,8 @@ class VendorPass: Pass, EmployeeEntrant {
     var merchandiseDiscount = 0
     
     var rideAccess = false
+    
+    var passDetails = "Pass for vendors"
     
     lazy var amusementAccess: Bool = {
         switch entrant.vendorCompany {

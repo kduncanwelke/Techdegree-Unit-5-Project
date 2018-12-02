@@ -16,9 +16,10 @@ class PassViewController: UIViewController {
    
     @IBOutlet weak var testResultsLabel: UILabel!
     
+    // hold pass that will come from segue
     var createdPass: Pass?
     
-    // sounds
+    // create sounds
     let accessGranted = Sound(number: 0, resourceName: "AccessGranted", type: "wav")
     let accessDenied = Sound(number: 1, resourceName: "AccessDenied", type: "wav")
     
@@ -50,6 +51,7 @@ class PassViewController: UIViewController {
     }
     */
     
+    // update UI with info from pass
     func updateUI() {
         switch createdPass {
         case is ClassicPass:
@@ -101,25 +103,35 @@ class PassViewController: UIViewController {
         }
     }
     
+    // update labels
     func updateLabels<T:Entrant>(guest: T) {
         nameLabel.text = "\(guest.firstName) \(guest.lastName)"
         
         guard let passName = createdPass?.passType else { return }
         passTypeLabel.text = "\(passName)"
+        
+        guard let details = createdPass?.passDetails else { return }
+        passDetailsLabel.text = "\(details)"
     }
     
+    // reaction when access is granted
     func correctResult() {
         Sound.playSound(number: accessGranted.number)
         testResultsLabel.text = "Access granted"
     }
     
+    // reaction when access is denied
     func incorrectResult() {
         Sound.playSound(number: accessDenied.number)
         testResultsLabel.text = "Access denied"
     }
     
+    // called when buttons are pressed to test access
     @IBAction func testAccess(_ sender: UIButton) {
         guard let pass = createdPass else { return }
+        
+        // use tuple to determine if access is allowed and if it is visitor's birthday
+        // include "error" with alert for pass being swiped again too soon
         switch sender.tag {
         case 0: // rides
             do {
@@ -341,7 +353,7 @@ class PassViewController: UIViewController {
         }
     }
     
-    
+    // go back to main pass creation view
     @IBAction func createNewPassButtonPressed(_ sender: UIButton) {
         performSegue(withIdentifier: "backToCreation", sender: (Any).self)
     }

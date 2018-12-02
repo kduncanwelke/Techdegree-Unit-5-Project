@@ -8,7 +8,7 @@
 
 import Foundation
 
-// enum of pass types
+// enum of pass types with handy rawvalues
 enum PassType: String {
     case classicPass = "Classic Pass"
     case vipPass = "VIP Pass"
