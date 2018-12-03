@@ -13,14 +13,17 @@ class TimerHandling {
     static var seconds = 0
     var isTimerOn = false
     
-    static let timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { timer in
-        print("Timer fired!")
-        seconds += 1
-        
-        if seconds == 5 {
-            timer.invalidate()
-            seconds = 0
+    static func beginTimer() {
+         let timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { timer in
+            print("Timer fired!")
+            seconds += 1
+            
+            if seconds == 5 {
+                timer.invalidate()
+                seconds = 0
+            }
         }
+        timer.fire()
     }
 
 }

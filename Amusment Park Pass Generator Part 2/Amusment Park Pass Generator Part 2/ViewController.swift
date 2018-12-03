@@ -594,6 +594,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
                     dateOfVisit.text = visit
                 }
             }
+        } else {
+            showAlert(title: "Selection missing", message: "No pass entrant and type were selected in order to generate data - please make a selection to proceed.")
         }
     }
     

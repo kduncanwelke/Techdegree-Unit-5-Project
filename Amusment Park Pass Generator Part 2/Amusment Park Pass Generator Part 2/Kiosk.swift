@@ -84,7 +84,7 @@ struct Kiosk {
         }
         
         // run timer to ensure pass is not swiped within 5 seconds
-        TimerHandling.timer.fire()
+        TimerHandling.beginTimer()
         
         // checks if it's the entrant's birthday
         let isBirthday = checkForBirthday(personWithPass: pass)

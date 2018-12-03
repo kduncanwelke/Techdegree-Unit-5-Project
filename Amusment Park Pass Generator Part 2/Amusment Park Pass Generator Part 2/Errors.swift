@@ -35,27 +35,27 @@ enum GuestRegistrationErrors: Error {
     var localizedDescription: String {
         switch self {
         case .invalidFirstName:
-            return "Invalid first name"
+            return "Invalid first name."
         case .invalidLastName:
-            return "Invalid last name"
+            return "Invalid last name."
         case .noFreeChildBirthday:
-            return "No birthday supplied to verify free child"
+            return "No birthday supplied to verify free child."
         case .childBirthdayNotConvertibleToDate:
-            return "Cannot convert input to date"
+            return "Cannot convert birthday field input to date."
         case .invalidFreeChildBirthday:
-            return "Birthday does not confirm child under 5 years of age"
+            return "Birthday does not confirm child under 5 years of age."
         case .noSeniorBirthday:
-            return "No birthday provided to confirm senior"
+            return "No birthday provided to confirm senior."
         case.seniorBirthdayNotConvertibleToDate:
-            return "Cannot convert input to date"
+            return "Cannot convert birthday field input to date."
         case.invalidSeniorBirthday:
-            return "Birthday does not confirm senior over 65"
+            return "Birthday does not confirm senior over 65."
         case .invalidSeasonPassAddress:
-            return "No address supplied for season pass guest"
+            return "No address supplied for season pass guest."
         case .invalidSeasonPassCity:
-            return "No city supplied for season pass guest"
+            return "No city supplied for season pass guest."
         case .invalidSeasonPassState:
-            return "No state supplied for season pass guest"
+            return "No state supplied for season pass guest."
         case .invalidSeasonPassZipCode:
             return "No zipcode supplied for season pass guest"
         }
@@ -83,29 +83,29 @@ enum EmployeeRegistrationErrors: Error {
     var localizedDescription: String {
         switch self {
         case .invalidFirstName:
-            return "Invalid first name"
+            return "Invalid first name."
         case .invalidLastName:
-            return "Invalid last name"
+            return "Invalid last name."
         case.invalidAddress:
-            return "Invalid address"
+            return "Invalid address."
         case .invalidCity:
-            return "Invalid city"
+            return "Invalid city."
         case .invalidState:
-            return "Invalid state"
+            return "Invalid state."
         case .invalidZipCode:
-            return "Invalid zipcode"
+            return "Invalid zipcode."
         case .invalidContractProjectNumber:
-            return "Invalid project number for contract employee"
+            return "Invalid project number for contract employee."
         case .contractNumberDoesntMatch:
-            return "Contract number entered does not match any on record"
+            return "Contract number entered does not match any on record."
         case .invalidVendorCompany:
-            return "Invalid vendor company"
+            return "Invalid vendor company."
         case .vendorCompanyNotListed:
-            return "Company entered is not one we work with"
+            return "Company entered is on record."
         case .invalidVendorVisitDate:
-            return "Invalid vendor visit date"
+            return "Invalid vendor visit date."
         case .invalidVendorBirthday:
-            return "Invalid vendor birth date"
+            return "Invalid vendor birth date."
         }
     }
 }
